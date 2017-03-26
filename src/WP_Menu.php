@@ -73,7 +73,7 @@ class WP_Menu {
         $data['icon_url'] = isset($data['icon_url']) ? $data['icon_url'] : '';
         $data['position'] = isset($data['position']) ? $data['position'] : 20;
 
-        if ($type === 'submenu')) {
+        if ($type === 'submenu') {
 
             $data['function'] = $function;
 
