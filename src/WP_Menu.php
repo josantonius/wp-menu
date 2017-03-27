@@ -68,46 +68,46 @@ class WP_Menu {
             $data['slug'] = sanitize_title($data['name']);
         }
 
-        $data['function'] =  __CLASS__ .'::checkPermissions';
+        self::$data['capability'] = $data['capability'];
+
+        $checkPermissions = __CLASS__ .'::checkPermissions';
+
+        $data['function'] = empty($function) ? $checkPermissions : $function;
 
         $data['icon_url'] = isset($data['icon_url']) ? $data['icon_url'] : '';
         $data['position'] = isset($data['position']) ? $data['position'] : 20;
 
         if ($type === 'submenu') {
 
-            $data['function'] = $function;
-
             $slug = self::$data['menu']['slug'];
 
-            $parent = isset($data['parent']) ? $data['parent'] : $slug;
+            $data['parent'] = isset($data['parent']) ? $data['parent'] :$slug;
         }
 
-        $data['parent'] = $parent;
+        self::$data[$type] = $data;
 
         $type = ucfirst($type); 
 
-        self::$data = $data;
-
-        add_action('admin_menu', __CLASS__ .'::add' . $type);
+        return add_action('admin_menu', __CLASS__ .'::add' . $type);
     }
   
     /**
      * Custom menu admin.
      *
-     * @uses add_menu_page() → add a top-level menu page
-     *
      * @since 1.0.0
+     *
+     * @uses add_menu_page() → add a top-level menu page
      */
     public static function addMenu() {
 
          add_menu_page(
-            self::$data['title'], 
-            self::$data['name'], 
-            self::$data['capability'], 
-            self::$data['slug'], 
-            self::$data['function'],
-            self::$data['icon_url'], 
-            self::$data['position']
+            self::$data['menu']['title'], 
+            self::$data['menu']['name'], 
+            self::$data['menu']['capability'], 
+            self::$data['menu']['slug'], 
+            self::$data['menu']['function'],
+            self::$data['menu']['icon_url'], 
+            self::$data['menu']['position']
         );
     }
 
@@ -117,16 +117,18 @@ class WP_Menu {
      * @since 1.0.0
      *
      * @uses add_submenu_page() → add a submenu page
+     *
+     * @return boolean
      */
     public static function addSubmenu() {
 
         add_submenu_page(
-            self::$data['parent'], 
-            self::$data['title'], 
-            self::$data['name'], 
-            self::$data['capability'], 
-            self::$data['slug'], 
-            self::$data['function']
+            self::$data['submenu']['parent'], 
+            self::$data['submenu']['title'], 
+            self::$data['submenu']['name'], 
+            self::$data['submenu']['capability'], 
+            self::$data['submenu']['slug'], 
+            self::$data['submenu']['function']
         );
     }
 
@@ -138,7 +140,7 @@ class WP_Menu {
      * @uses current_user_can() → specific capability
      * @uses wp_die()           → kill WordPress execution and show error
      */
-    public static function checkPermissions($capability) {
+    public static function checkPermissions() {
 
         if (!current_user_can(self::$data['capability'])) {
 
