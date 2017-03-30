@@ -46,7 +46,7 @@ class WP_Menu {
      *
      * @return boolean
      */
-    public static function add($type, $data = [], $function = []) {
+    public static function add($type, $data = [], $function = '') {
 
         $required = ['name', 'slug'];
 
@@ -69,9 +69,7 @@ class WP_Menu {
 
             $data['capability'] = 'manage-options';
         }
-
-        $function = array_merge($function, [__CLASS__ .'::checkPermissions']);
-
+        
         $data['function'] = $function;
 
         $data['icon_url'] = isset($data['icon_url']) ? $data['icon_url'] : '';
@@ -92,9 +90,9 @@ class WP_Menu {
      * @uses current_user_can() → specific capability
      * @uses wp_die()           → kill WordPress execution and show error
      */
-    public static function checkPermissions() {
+    public static function checkPermissions($capability) {
 
-        if (!current_user_can(self::$data['capability'])) {
+        if (!current_user_can($capability)) {
 
             $message = __('You don\'t have permissions to access this page.');
 
@@ -116,6 +114,8 @@ class WP_Menu {
         $slug = $index[1];
 
         $data = self::$data[$type][$slug];
+
+        self::checkPermissions($data['capability']);
 
         if ($type === 'menu') {
 
