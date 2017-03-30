@@ -62,16 +62,25 @@ require __DIR__ . '/vendor/autoload.php';
 use Josantonius\WP_Menu\WP_Menu;
 
 $menu = [
-
+	'slug'       => 'searchinside-options',					// Required
+	'name'       => __('Search Inside', 'search-iniside'),  // Required
+	'title'      => __('Search Inside', 'search-iniside'),  // Optional
+	'capability' => 'manage_options',					    // Optional
+	'icon_url'   => '//searchinside-menu-admin.png',		// Optional
+	'position'   => 25,										// Optional
 ];
 
 WP_Menu::add('menu', $menu);
 
 $submenu = [
-
+	'slug'       => 'searchinside-options',				// Required
+	'parent'     => 'searchinside-options',				// Required
+	'name'       => __('Options', 'search-iniside'),	// Required
+	'title'      => __('Options', 'search-iniside'),	// Optional
+	'capability' => 'manage_options',					// Optional
 ];
 
-WP_Menu::add('submenu', $submenu);
+WP_Menu::add('submenu', $submenu, [$this, 'runPage']);
 ```
 
 
