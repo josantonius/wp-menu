@@ -1,6 +1,6 @@
 {
     "name":        "josantonius/wp_menu",
-    "version":     "1.0.0",
+    "version":     "1.0.1",
     "type":        "library",
     "description": "Add menu or submenu page in WordPress.",
     "keywords": [

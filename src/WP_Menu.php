@@ -77,7 +77,12 @@ class WP_Menu {
         
         self::$data[$type][$data['slug']] = $data;
 
-        add_action('admin_menu', __CLASS__ .'::'. $type .'_'. $data['slug']);
+        $slug = $data['slug'];
+
+        add_action('admin_menu', function() use ($type, $slug) {
+            
+            self::_set($type, $slug);
+        });
 
         return true;
     }
@@ -101,17 +106,14 @@ class WP_Menu {
     }
 
     /**
-     * Add menu and submenu admin.
+     * Set menu and submenu admin.
      *
-     * @param string $index
-     * @param array  $params
+     * @since 1.0.1
+     *
+     * @param string $type → menu|submenu
+     * @param string  $slug
      */
-    public static function __callstatic($index, $params = null) {
-
-        $index = explode('_', $index);
-
-        $type = $index[0];
-        $slug = $index[1];
+    private static function _set($type, $slug) {
 
         $data = self::$data[$type][$slug];
 
