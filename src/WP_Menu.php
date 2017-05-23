@@ -77,6 +77,8 @@ class WP_Menu {
         
         self::$data[$type][$data['slug']] = $data;
 
+        add_action('admin_menu', __CLASS__ .'::'. $type .'_'. $data['slug']);
+
         return true;
     }
 
