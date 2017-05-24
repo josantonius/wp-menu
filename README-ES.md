@@ -20,7 +20,7 @@ Agregar menú o submenús en WordPress.
 
 ---
 
-### Instalación 
+## Instalación 
 
 La mejor forma de instalar esta extensión es a través de [composer](http://getcomposer.org/download/).
 
@@ -36,112 +36,135 @@ También puedes clonar el repositorio completo con Git:
 
     $ git clone https://github.com/Josantonius/WP_Menu.git
     
-### Requisitos
+## Requisitos
 
 Esta ĺibrería es soportada por versiones de PHP 5.6 o superiores y es compatible con versiones de HHVM 3.0 o superiores.
 
 Para utilizar esta biblioteca en HHVM (HipHop Virtual Machine) tendrás que activar los tipos escalares. Añade la siguiente ĺínea "hhvm.php7.scalar_types = true" en tu "/etc/hhvm/php.ini".
 
-### Cómo empezar y ejemplos
+## Cómo empezar y ejemplos
 
 Para utilizar esta biblioteca, simplemente:
-
-```php
-require __DIR__ . '/vendor/autoload.php';
-
-use Josantonius\WP_Menu\WP_Menu;
-```
-### Uso
-
-Ejemplo de uso para esta biblioteca:
 
 ```php
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
 use Josantonius\WP_Menu\WP_Menu;
+```
 
-$menu = [
-	'slug'       => 'searchinside-options',					// Requerido
-	'name'       => __('Search Inside', 'search-iniside'),  // Requerido
-	'title'      => __('Search Inside', 'search-iniside'),  // Opcional
-	'capability' => 'manage_options',					    // Opcional
-	'icon_url'   => '//searchinside-menu-admin.png',		// Opcional
-	'position'   => 25,										// Opcional
+### Establecer parámetros para menú
+
+```php
+$params = [
+	'slug'       => 'searchinside-options',                // Required
+	'name'       => __('Search Inside', 'search-iniside'), // Required
+	'title'      => __('Search Inside', 'search-iniside'), // Optional
+	'capability' => 'manage_options',                      // Optional
+	'icon_url'   => '//searchinside-menu-admin.png',       // Optional
+	'position'   => 25,                                    // Optional
 ];
+```
 
-// Agregar menú sin método asociado a la salida de la página.
+### Agregar menú
+
+Agregar menú sin método asociado a la salida de la página.
+```php
 WP_Menu::add(
 	'menu', 
-	$menu
+	$params
 );
+```
 
-// Agregar menú con el método a ejecutar en la salida de la página. Si no se indican métodos para cargar scripts y estilos y existen los métodos "addStyles" y "addScripts" en la instancia ($this en este caso) se cargarán de forma predeterminada.
+Agregar menú con el método a ejecutar en la salida de la página. Si no se indican métodos para cargar scripts y estilos y existen los métodos "addStyles" y "addScripts" en la instancia ($this en este caso) se cargarán de forma predeterminada.
+```php
 WP_Menu::add(
 	'menu', 
+	$params,
 	[$this, 'runPage']
 );
+```
 
-// Agregar menú con el método a ejecutar en la salida de la página y métodos asociados para la carga de estilos y scripts.
+Agregar menú con el método a ejecutar en la salida de la página y métodos asociados para la carga de estilos y scripts.
+```php
 WP_Menu::add(
-	'menu', 
-	[$this, 'runPage'], 
-	'load_styles',		// Sería lo mismo que: [$this, 'load_styles']
-	'load_scripts'		// Sería lo mismo que: [$this, 'load_scripts']
-);
-
-// Agregar menú con el método a ejecutar en la salida de la página y métodos asociados para la carga de estilos y scripts agregando cada objeto de manera individual.
-WP_Menu::add(
-	'menu', 
-	[$instance1, 'runPage'], 
-	[$instance3, 'load_styles'],
-	[$instance3, 'load_scripts']
-);
-
-$submenu = [
-	'slug'       => 'searchinside-options',				// Requerido
-	'parent'     => 'searchinside-options',				// Requerido
-	'name'       => __('Options', 'search-iniside'),	// Requerido
-	'title'      => __('Options', 'search-iniside'),	// Opcional
-	'capability' => 'manage_options',					// Opcional
-];
-
-
-// Agregar submenú sin método asociado a la salida de la página.
-WP_Menu::add(
-	'submenu', 
-	$submenu
-);
-
-// Agregar submenú con el método a ejecutar en la salida de la página. Si no se indican métodos para cargar scripts y estilos y existen los métodos "addStyles" y "addScripts" en la instancia ($this en este caso) se cargarán de forma predeterminada.
-WP_Menu::add(
-	'submenu', 
-	[$this, 'runPage']
-);
-
-// Agregar submenú con el método a ejecutar en la salida de la página y métodos asociados para la carga de estilos y scripts.
-WP_Menu::add(
-	'submenu', 
+	'menu',
+	$params,
 	[$this, 'runPage'], 
 	'load_styles',		// It would be the same as: [$this, 'load_styles']
 	'load_scripts'		// It would be the same as: [$this, 'load_scripts']
 );
+```
 
-// Agregar submenú con el método a ejecutar en la salida de la página y métodos asociados para la carga de estilos y scripts agregando cada objeto de manera individual.
+Agregar menú con el método a ejecutar en la salida de la página y métodos asociados para la carga de estilos y scripts agregando cada objeto de manera individual.
+```php
 WP_Menu::add(
-	'submenu', 
+	'menu', 
+	$params,
 	[$instance1, 'runPage'], 
 	[$instance3, 'load_styles'],
 	[$instance3, 'load_scripts']
 );
 ```
 
+### Establecer parámetros para submenú
 
-### ☑ TODO
+```php
+$params = [
+	'slug'       => 'searchinside-options',          // Required
+	'parent'     => 'searchinside-options',          // Required
+	'name'       => __('Options', 'search-iniside'), // Required
+	'title'      => __('Options', 'search-iniside'), // Optional
+	'capability' => 'manage_options',                // Optional
+];
+```
+
+### Agregar submenú
+
+Agregar submenú sin método asociado a la salida de la página.
+```php
+WP_Menu::add(
+	'submenu', 
+	$params
+);
+```
+
+Agregar submenú con el método a ejecutar en la salida de la página. Si no se indican métodos para cargar scripts y estilos y existen los métodos "addStyles" y "addScripts" en la instancia ($this en este caso) se cargarán de forma predeterminada.
+```php
+WP_Menu::add(
+	'submenu',
+	$params, 
+	[$this, 'runPage']
+);
+```
+
+Agregar submenú con el método a ejecutar en la salida de la página y métodos asociados para la carga de estilos y scripts.
+```php
+WP_Menu::add(
+	'submenu', 
+	$params, 
+	[$this, 'runPage'], 
+	'load_styles',		// It would be the same as: [$this, 'load_styles']
+	'load_scripts'		// It would be the same as: [$this, 'load_scripts']
+);
+```
+
+Agregar submenú con el método a ejecutar en la salida de la página y métodos asociados para la carga de estilos y scripts agregando cada objeto de manera individual.
+```php
+WP_Menu::add(
+	'submenu', 
+	$params, 
+	[$instance1, 'runPage'], 
+	[$instance3, 'load_styles'],
+	[$instance3, 'load_scripts']
+);
+```
+
+## ☑ TODO
 
 - [ ] Agregar tests
 
-### Contribuir
+## Contribuir
 1. Comprobar si hay incidencias abiertas o abrir una nueva para iniciar una discusión en torno a un fallo o función.
 1. Bifurca la rama del repositorio en GitHub para iniciar la operación de ajuste.
 1. Escribe una o más pruebas para la nueva característica o expón el error.
@@ -150,15 +173,15 @@ WP_Menu::add(
 
 Esto está pensado para proyectos grandes y de larga duración.
 
-### Repositorio
+## Repositorio
 
 Los archivos de este repositorio se crearon y subieron automáticamente con [Reposgit Creator](https://github.com/Josantonius/BASH-Reposgit).
 
-### Licencia
+## Licencia
 
 Este proyecto está licenciado bajo **licencia MIT**. Consulta el archivo [LICENSE](LICENSE) para más información.
 
-### Copyright
+## Copyright
 
 2017 Josantonius, [josantonius.com](https://josantonius.com/)
 

@@ -68,7 +68,7 @@ $params = [
 
 ### Add menu
 
-Add menu without associated method:
+Add menu without associated method.
 ```php
 WP_Menu::add(
 	'menu', 
