@@ -20,7 +20,7 @@ Add menu or submenu page in WordPress.
 
 ---
 
-### Installation
+## Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
@@ -36,13 +36,13 @@ Or you can also clone the complete repository with Git:
 
     $ git clone https://github.com/Josantonius/WP_Menu.git
     
-### Requirements
+## Requirements
 
 This library is supported by PHP versions 5.6 or higher and is compatible with HHVM versions 3.0 or higher.
 
 To use this library in HHVM (HipHop Virtual Machine) you will have to activate the scalar types. Add the following line "hhvm.php7.scalar_types = true" in your "/etc/hhvm/php.ini".
 
-### Quick Start and Examples
+## Quick Start and Examples
 
 To use this class, simply:
 
@@ -51,8 +51,12 @@ To use this class, simply:
 require __DIR__ . '/vendor/autoload.php';
 
 use Josantonius\WP_Menu\WP_Menu;
+```
 
-$menu = [
+### Set menu params
+
+```php
+$params = [
 	'slug'       => 'searchinside-options',                // Required
 	'name'       => __('Search Inside', 'search-iniside'), // Required
 	'title'      => __('Search Inside', 'search-iniside'), // Optional
@@ -60,78 +64,107 @@ $menu = [
 	'icon_url'   => '//searchinside-menu-admin.png',       // Optional
 	'position'   => 25,                                    // Optional
 ];
+```
 
-// Add menu without associated method
+### Add menu
+
+Add menu without associated method:
+```php
 WP_Menu::add(
 	'menu', 
-	$menu
+	$params
 );
+```
 
-// Add menu with associated method for output. If no methods are indicated for loading scripts and styles and there are "addStyles" and "addScripts" methods in the instance ($this in this case) will be loaded by default.
+Add menu with associated method for output. If no methods are indicated for loading scripts and styles and there are "addStyles" and "addScripts" methods in the instance ($this in this case) will be loaded by default.
+```php
 WP_Menu::add(
 	'menu', 
+	$params,
 	[$this, 'runPage']
 );
+```
 
-// Add menu with associated method for output and methods to load styles and scripts.
+Add menu with associated method for output and methods to load styles and scripts.
+```php
 WP_Menu::add(
-	'menu', 
+	'menu',
+	$params,
 	[$this, 'runPage'], 
 	'load_styles',		// It would be the same as: [$this, 'load_styles']
 	'load_scripts'		// It would be the same as: [$this, 'load_scripts']
 );
+```
 
-// Add menu with associated method for output and methods to load styles and scripts indicating each object individually.
+Add menu with associated method for output and methods to load styles and scripts indicating each object individually.
+```php
 WP_Menu::add(
 	'menu', 
-	[$instance1, 'runPage'], 
-	[$instance3, 'load_styles'],
-	[$instance3, 'load_scripts']
-);
-
-$submenu = [
-	'slug'       => 'searchinside-options',          // Required
-	'parent'     => 'searchinside-options',          // Required
-	'name'       => __('Options', 'search-iniside'), // Required
-	'title'      => __('Options', 'search-iniside'), // Optional
-	'capability' => 'manage_options',                // Optional
-];
-
-
-// Add submenu without associated method
-WP_Menu::add(
-	'submenu', 
-	$submenu
-);
-
-// Add submenu with associated method for output. If no methods are indicated for loading scripts and styles and there are "addStyles" and "addScripts" methods in the instance ($this in this case) will be loaded by default.
-WP_Menu::add(
-	'submenu', 
-	[$this, 'runPage']
-);
-
-// Add submenu with associated method for output and methods to load styles and scripts.
-WP_Menu::add(
-	'submenu', 
-	[$this, 'runPage'], 
-	'load_styles',		// It would be the same as: [$this, 'load_styles']
-	'load_scripts'		// It would be the same as: [$this, 'load_scripts']
-);
-
-// Add submenu with associated method for output and methods to load styles and scripts indicating each object individually.
-WP_Menu::add(
-	'submenu', 
+	$params,
 	[$instance1, 'runPage'], 
 	[$instance3, 'load_styles'],
 	[$instance3, 'load_scripts']
 );
 ```
 
-### ☑ TODO
+### Set submenu params
+
+```php
+$params = [
+	'slug'       => 'searchinside-options',          // Required
+	'parent'     => 'searchinside-options',          // Required
+	'name'       => __('Options', 'search-iniside'), // Required
+	'title'      => __('Options', 'search-iniside'), // Optional
+	'capability' => 'manage_options',                // Optional
+];
+```
+
+### Add submenu
+
+Add submenu without associated method:
+```php
+WP_Menu::add(
+	'submenu', 
+	$params
+);
+```
+
+Add submenu with associated method for output. If no methods are indicated for loading scripts and styles and there are "addStyles" and "addScripts" methods in the instance ($this in this case) will be loaded by default.
+```php
+WP_Menu::add(
+	'submenu',
+	$params, 
+	[$this, 'runPage']
+);
+```
+
+Add submenu with associated method for output and methods to load styles and scripts.
+```php
+WP_Menu::add(
+	'submenu', 
+	$params, 
+	[$this, 'runPage'], 
+	'load_styles',		// It would be the same as: [$this, 'load_styles']
+	'load_scripts'		// It would be the same as: [$this, 'load_scripts']
+);
+```
+
+Add submenu with associated method for output and methods to load styles and scripts indicating each object individually.
+```php
+WP_Menu::add(
+	'submenu', 
+	$params, 
+	[$instance1, 'runPage'], 
+	[$instance3, 'load_styles'],
+	[$instance3, 'load_scripts']
+);
+```
+
+## ☑ TODO
 
 - [ ] Add tests
 
-### Contribute
+## Contribute
 1. Check for open issues or open a new issue to start a discussion around a bug or feature.
 1. Fork the repository on GitHub to start making your changes.
 1. Write one or more tests for the new feature or that expose the bug.
@@ -140,15 +173,15 @@ WP_Menu::add(
 
 This is intended for large and long-lived objects.
 
-### Repository
+## Repository
 
 All files in this repository were created and uploaded automatically with [Reposgit Creator](https://github.com/Josantonius/BASH-Reposgit).
 
-### Licensing
+## Licensing
 
 This project is licensed under **MIT license**. See the [LICENSE](LICENSE) file for more info.
 
-### Copyright
+## Copyright
 
 2017 Josantonius, [josantonius.com](https://josantonius.com/)
 
