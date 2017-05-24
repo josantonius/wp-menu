@@ -44,13 +44,20 @@ class WP_Menu {
      *        string  $data['icon_url']   // (optional)
      *        int     $data['position']   // (optional)
      *
+     * @param mixed $function → method to be called to output page content
+     * @param mixed $styles   → method to be called to load page styles
+     * @param mixed $scripts  → method to be called to load page scripts
+     *
      * @return boolean
      */
-    public static function add($type, $data = [], $function = '') {
+    public static function add($type, $data = [], $function = '', $styles = '', $scripts = '') {
 
         $required = ['name', 'slug'];
 
-        if ($type === 'submenu') { array_push($required, 'parent'); }
+        if ($type === 'submenu') { 
+
+            array_push($required, 'parent'); 
+        }
 
         foreach ($required as $field) {
 
@@ -60,24 +67,41 @@ class WP_Menu {
             }
         }
 
-        if (!isset($data['title'])) {
+        $params = ['title', 'capability', 'icon_url', 'position'];
 
-            $data['title'] = $data['name'];
+        foreach ($params as $param) {
+
+            if (isset($data[$param])) { continue; }
+
+            switch ($param) {
+
+                case 'title':
+                    $data[$param] = $data['name'];
+                    break;
+
+                case 'capability':
+                    $data[$param] = 'manage-options';
+                    break;
+
+                case 'icon_url':
+                    $data[$param] = '';
+                    break;
+
+                case 'position':
+                    $data[$param] = 20;
+                    break;
+            }
         }
 
-        if (!isset($data['capability'])) {
+        $function = (self::_validateMethod($function)) ? $function : '';
 
-            $data['capability'] = 'manage-options';
-        }
-        
+        $data['styles']   = $styles;
+        $data['scripts']  = $scripts;
         $data['function'] = $function;
 
-        $data['icon_url'] = isset($data['icon_url']) ? $data['icon_url'] : '';
-        $data['position'] = isset($data['position']) ? $data['position'] : 20;
-        
-        self::$data[$type][$data['slug']] = $data;
-
         $slug = $data['slug'];
+
+        self::$data[$type][$slug] = $data;
 
         add_action('admin_menu', function() use ($type, $slug) {
             
@@ -88,40 +112,22 @@ class WP_Menu {
     }
 
     /**
-     * Validate permissions.
-     *
-     * @since 1.0.0
-     *
-     * @uses current_user_can() → specific capability
-     * @uses wp_die()           → kill WordPress execution and show error
-     */
-    public static function checkPermissions($capability) {
-
-        if (!current_user_can($capability)) {
-
-            $message = __('You don\'t have permissions to access this page.');
-
-            wp_die($message);
-        }
-    }
-
-    /**
      * Set menu and submenu admin.
      *
      * @since 1.0.1
      *
      * @param string $type → menu|submenu
-     * @param string  $slug
+     * @param string $slug
      */
     private static function _set($type, $slug) {
 
         $data = self::$data[$type][$slug];
 
-        self::checkPermissions($data['capability']);
+        self::_checkPermissions($data['capability']);
 
         if ($type === 'menu') {
 
-             add_menu_page(
+            $page = add_menu_page(
                 $data['title'], 
                 $data['name'], 
                 $data['capability'], 
@@ -133,7 +139,7 @@ class WP_Menu {
 
         } else {
 
-            add_submenu_page(
+            $page = add_submenu_page(
                 $data['parent'], 
                 $data['title'], 
                 $data['name'], 
@@ -142,5 +148,94 @@ class WP_Menu {
                 $data['function']
             );
         }
+
+       self::_setAction('styles',  $page, $data['function'], $data['styles']);
+       self::_setAction('scripts', $page, $data['function'], $data['scripts']);
+    }
+
+    /**
+     * Validate permissions.
+     *
+     * @since 1.0.2
+     *
+     * @uses current_user_can() → specific capability
+     * @uses wp_die()           → kill WordPress execution and show error
+     */
+    private static function _checkPermissions($capability) {
+
+        if (!current_user_can($capability)) {
+
+            $message = __('You don\'t have permissions to access this page.');
+
+            wp_die($message);
+        }
+    }
+
+    /**
+     * Check if method exists.
+     *
+     * @since 1.0.2
+     *
+     * @param array $method → [class|object, method]
+     *
+     * @return boolean
+     */
+    private static function _validateMethod($method) {
+
+        if (!empty($method) && isset($method[0]) && isset($method[1])) {
+
+            if (method_exists($method[0], $method[1])) {
+
+                return true;
+            }
+        } 
+
+        return false;
+    }
+
+    /**
+     * Add actions to load styles and scripts that will be executed 
+     * only when loading this page.
+     *
+     * @since 1.0.2
+     *
+     * @param string $type     → style|script
+     * @param string $page     → slug of the page associated with the menu
+     * @param mixed  $instance → output instance
+     * @param mixed  $function → method to be called to load styles or scripts
+     *
+     * 1. Check if an existing method has been indicated.
+     * 2. If it does not exist, it checks if only the name of the method has
+     *    been indicated and if it exists inside the output function.
+     * 3. If it does not exist, it is checked if there exists the method
+     *    "addStyles" or "addScripts" inside the output function.
+     *
+     * @return boolean
+     */
+    private static function _setAction($type, $page, $instance, $function) {
+
+        if (!self::_validateMethod($function) && isset($instance[0])) {
+
+            $method = $function;
+
+            $instance = $instance[0];
+
+            $defaultMethod = 'add' . ucfirst($type);
+
+            if (self::_validateMethod([$instance, $method])) {
+
+                $function = [$instance, $function];
+
+            } else if (self::_validateMethod([$instance, $defaultMethod])) {
+
+                $function = [$instance, $defaultMethod];
+
+            } else {
+
+                return false;
+            }
+        }
+
+        add_action('load-'.$page, $function);
     }
 }

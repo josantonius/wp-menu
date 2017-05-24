@@ -61,7 +61,33 @@ $menu = [
 	'position'   => 25,										// Optional
 ];
 
-WP_Menu::add('menu', $menu);
+// Add menu without associated method
+WP_Menu::add(
+	'menu', 
+	$menu
+);
+
+// Add menu with associated method for output. If no methods are indicated for loading scripts and styles and there are "addStyles" and "addScripts" methods in the instance ($this in this case) will be loaded by default.
+WP_Menu::add(
+	'menu', 
+	[$this, 'runPage']
+);
+
+// Add menu with associated method for output and methods to load styles and scripts.
+WP_Menu::add(
+	'menu', 
+	[$this, 'runPage'], 
+	'load_styles',		// It would be the same as: [$this, 'load_styles']
+	'load_scripts'		// It would be the same as: [$this, 'load_scripts']
+);
+
+// Add menu with associated method for output and methods to load styles and scripts indicating each object individually.
+WP_Menu::add(
+	'menu', 
+	[$instance1, 'runPage'], 
+	[$instance3, 'load_styles'],
+	[$instance3, 'load_scripts']
+);
 
 $submenu = [
 	'slug'       => 'searchinside-options',				// Required
@@ -71,7 +97,34 @@ $submenu = [
 	'capability' => 'manage_options',					// Optional
 ];
 
-WP_Menu::add('submenu', $submenu, [$this, 'runPage']);
+
+// Add submenu without associated method
+WP_Menu::add(
+	'submenu', 
+	$submenu
+);
+
+// Add submenu with associated method for output. If no methods are indicated for loading scripts and styles and there are "addStyles" and "addScripts" methods in the instance ($this in this case) will be loaded by default.
+WP_Menu::add(
+	'submenu', 
+	[$this, 'runPage']
+);
+
+// Add submenu with associated method for output and methods to load styles and scripts.
+WP_Menu::add(
+	'submenu', 
+	[$this, 'runPage'], 
+	'load_styles',		// It would be the same as: [$this, 'load_styles']
+	'load_scripts'		// It would be the same as: [$this, 'load_scripts']
+);
+
+// Add submenu with associated method for output and methods to load styles and scripts indicating each object individually.
+WP_Menu::add(
+	'submenu', 
+	[$instance1, 'runPage'], 
+	[$instance3, 'load_styles'],
+	[$instance3, 'load_scripts']
+);
 ```
 
 ### ☑ TODO
