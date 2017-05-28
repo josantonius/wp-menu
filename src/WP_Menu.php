@@ -151,7 +151,7 @@ class WP_Menu {
             );
         }
 
-        do_action('wp_menu/before_add_' . $type . '_page', 'load-'.$page);
+        do_action('wp_menu/after_add_' . $type . '_page', 'load-'.$page);
 
         $fuction = $data['function'];
 
