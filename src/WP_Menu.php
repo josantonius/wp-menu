@@ -121,6 +121,8 @@ class WP_Menu {
      */
     private static function _set($type, $slug) {
 
+        global $pagenow;
+
         $data = self::$data[$type][$slug];
 
         self::_checkPermissions($data['capability']);
@@ -152,11 +154,14 @@ class WP_Menu {
         }
 
         do_action('wp_menu/after_add_' . $type . '_page', 'load-'.$page);
+        
+        if ($pagenow === 'admin.php') {
 
-        $fuction = $data['function'];
+            $fuction = $data['function'];
 
-        self::_setAction('styles',  $page, $fuction, $data['styles']);
-        self::_setAction('scripts', $page, $fuction, $data['scripts']);
+            self::_setAction('styles',  $page, $fuction, $data['styles']);
+            self::_setAction('scripts', $page, $fuction, $data['scripts']);
+        }
     }
 
     /**
