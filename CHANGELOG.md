@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.3 - 2017-05-28
+
+* Added hook 'wp_menu-load-admin-page'. It will be executed (do_action) when adding the menu or submenu and will return the hook name of the administration page associated with the menu or submenu.
+
 ## 1.0.2 - 2017-05-24
 
 * Added option to indicate methods to load styles and scripts by passing them as attributes in the WP_Menu::add() method.

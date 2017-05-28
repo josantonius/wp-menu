@@ -149,8 +149,12 @@ class WP_Menu {
             );
         }
 
-       self::_setAction('styles',  $page, $data['function'], $data['styles']);
-       self::_setAction('scripts', $page, $data['function'], $data['scripts']);
+        $fuction = $data['function'];
+
+        do_action('wp_menu-load-admin-page', 'load-'.$page);
+
+        self::_setAction('styles',  $page, $fuction, $data['styles']);
+        self::_setAction('scripts', $page, $fuction, $data['scripts']);
     }
 
     /**
