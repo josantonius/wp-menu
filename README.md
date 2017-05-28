@@ -12,6 +12,7 @@ Add menu or submenu page in WordPress.
 - [Requirements](#requirements)
 - [Quick Start and Examples](#quick-start-and-examples)
 - [Usage](#usage)
+- [Action Hooks](#action-hooks)
 - [TODO](#-todo)
 - [Contribute](#contribute)
 - [Repository](#repository)
@@ -159,6 +160,15 @@ WP_Menu::add(
 	[$instance3, 'load_scripts']
 );
 ```
+
+## Action hooks
+
+| Action | Description | Parameters
+| --- | --- | --- |
+| wp_menu/pre_add_menu_page | Before adding menu. | 
+| wp_menu/after_add_menu_page | After adding menu. | **$page** Resulting page's hook_suffix, or false.
+| wp_menu/pre_add_submenu_page | Before adding submenu. | 
+| wp_menu/after_add_submenu_page | After adding submenu. | **$page** Resulting page's hook_suffix, or false.
 
 ## ☑ TODO
 

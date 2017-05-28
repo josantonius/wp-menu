@@ -125,6 +125,8 @@ class WP_Menu {
 
         self::_checkPermissions($data['capability']);
 
+        do_action('wp_menu/pre_add_' . $type . '_page');
+
         if ($type === 'menu') {
 
             $page = add_menu_page(
@@ -149,9 +151,9 @@ class WP_Menu {
             );
         }
 
-        $fuction = $data['function'];
+        do_action('wp_menu/before_add_' . $type . '_page', 'load-'.$page);
 
-        do_action('wp_menu-load-admin-page', 'load-'.$page);
+        $fuction = $data['function'];
 
         self::_setAction('styles',  $page, $fuction, $data['styles']);
         self::_setAction('scripts', $page, $fuction, $data['scripts']);

@@ -2,7 +2,12 @@
 
 ## 1.0.3 - 2017-05-28
 
-* Added hook 'wp_menu-load-admin-page'. It will be executed (do_action) when adding the menu or submenu and will return the hook name of the administration page associated with the menu or submenu.
+* Added the following actions hooks:
+
+	wp_menu/pre_add_menu_page      | Before adding menu
+	wp_menu/after_add_menu_page    | After adding menu.
+	wp_menu/pre_add_submenu_page   | Before adding submenu
+	wp_menu/after_add_submenu_page | After adding submenu.
 
 ## 1.0.2 - 2017-05-24
 
