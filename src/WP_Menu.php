@@ -219,7 +219,7 @@ class WP_Menu {
      * 2. If it does not exist, it checks if only the name of the method has
      *    been indicated and if it exists inside the output function.
      * 3. If it does not exist, it is checked if there exists the method
-     *    "addStyles" or "addScripts" inside the output function.
+     *    'addStyles' or 'addScripts' inside the output function.
      *
      * @return boolean
      */
