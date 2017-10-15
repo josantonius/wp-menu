@@ -99,12 +99,12 @@ Agregar menu/submenu.
 
 ```php
 $params = [
-	'slug'       => 'searchinside-options',
-	'name'       => __('Search Inside', 'search-iniside'),
-	'title'      => __('Search Inside', 'search-iniside'),
-	'capability' => 'manage_options',
-	'icon_url'   => '//searchinside-menu-admin.png',
-	'position'   => 25,
+    'slug'       => 'searchinside-options',
+    'name'       => __('Search Inside', 'search-iniside'),
+    'title'      => __('Search Inside', 'search-iniside'),
+    'capability' => 'manage_options',
+    'icon_url'   => '//searchinside-menu-admin.png',
+    'position'   => 25,
 ];
 ```
 
@@ -114,8 +114,8 @@ Añadir menú sin método asociado.
 
 ```php
 WP_Menu::add(
-	'menu', 
-	$params
+    'menu', 
+    $params
 );
 ```
 
@@ -123,9 +123,9 @@ Agregar menú con método asociado para la salida.
 
 ```php
 WP_Menu::add(
-	'menu', 
-	$params,
-	[$this, 'runPage']
+    'menu', 
+    $params,
+    [$this, 'runPage']
 );
 ```
 
@@ -133,10 +133,10 @@ Agregar menú con métodos de salida y estilos asociados.
 
 ```php
 WP_Menu::add(
-	'menu', 
-	$params,
-	[$instance1, 'runPage'], 
-	[$instance3, 'load_styles']
+    'menu', 
+    $params,
+    [$instance1, 'runPage'], 
+    [$instance3, 'load_styles']
 );
 ```
 
@@ -144,11 +144,11 @@ Agregar menú con métodos de salida, estilos y scripts asociados.
 
 ```php
 WP_Menu::add(
-	'menu', 
-	$params,
-	[$instance1, 'runPage'], 
-	[$instance3, 'load_styles'],
-	[$instance3, 'load_scripts']
+    'menu', 
+    $params,
+    [$instance1, 'runPage'], 
+    [$instance3, 'load_styles'],
+    [$instance3, 'load_scripts']
 );
 ```
 
@@ -156,11 +156,11 @@ Agregar menú con métodos de salida y scripts asociados.
 
 ```php
 WP_Menu::add(
-	'menu', 
-	$params,
-	[$instance1, 'runPage'], 
-	false,
-	[$instance3, 'load_scripts']
+    'menu', 
+    $params,
+    [$instance1, 'runPage'], 
+    false,
+    [$instance3, 'load_scripts']
 );
 ```
 
@@ -168,11 +168,11 @@ WP_Menu::add(
 
 ```php
 $params = [
-	'slug'       => 'searchinside-options',
-	'parent'     => 'searchinside-options',
-	'name'       => __('Options', 'search-iniside'),
-	'title'      => __('Options', 'search-iniside'),
-	'capability' => 'manage_options',
+    'slug'       => 'searchinside-options',
+    'parent'     => 'searchinside-options',
+    'name'       => __('Options', 'search-iniside'),
+    'title'      => __('Options', 'search-iniside'),
+    'capability' => 'manage_options',
 ];
 ```
 
@@ -182,8 +182,8 @@ Agregar submenú sin método asociado:
 
 ```php
 WP_Menu::add(
-	'submenu', 
-	$params
+    'submenu', 
+    $params
 );
 ```
 
@@ -191,9 +191,9 @@ Agregar submenú con método asociado para salida:
 
 ```php
 WP_Menu::add(
-	'submenu',
-	$params, 
-	[$this, 'runPage']
+    'submenu',
+    $params, 
+    [$this, 'runPage']
 );
 ```
 
@@ -201,10 +201,10 @@ Agregar submenú con método asociado para salida y estilos:
 
 ```php
 WP_Menu::add(
-	'submenu', 
-	$params, 
-	[$instance1, 'runPage'], 
-	[$instance3, 'load_styles']
+    'submenu', 
+    $params, 
+    [$instance1, 'runPage'], 
+    [$instance3, 'load_styles']
 );
 ```
 
@@ -212,11 +212,11 @@ Agregar submenú con método asociado para salida, estilos y scripts:
 
 ```php
 WP_Menu::add(
-	'submenu', 
-	$params, 
-	[$instance1, 'runPage'], 
-	[$instance3, 'load_styles'],
-	[$instance3, 'load_scripts']
+    'submenu', 
+    $params, 
+    [$instance1, 'runPage'], 
+    [$instance3, 'load_styles'],
+    [$instance3, 'load_scripts']
 );
 ```
 
@@ -224,11 +224,11 @@ Agregar submenú con método asociado para salida y scripts:
 
 ```php
 WP_Menu::add(
-	'submenu', 
-	$params, 
-	[$instance1, 'runPage'], 
-	false,
-	[$instance3, 'load_scripts']
+    'submenu', 
+    $params, 
+    [$instance1, 'runPage'], 
+    false,
+    [$instance3, 'load_scripts']
 );
 ```
 
@@ -237,7 +237,7 @@ WP_Menu::add(
 ```php
 class SampleClass {
 
-	public function __construct() {
+    public function __construct() {
 
         add_action('wp_menu/pre_add_menu_page', [$this, 'beforeAddMenu']);
 
@@ -246,46 +246,46 @@ class SampleClass {
         add_action('wp_menu/pre_add_submenu_page', [$this, 'beforeAddSubmenu']);
 
         add_action('wp_menu/after_add_submenu_page', [$this, 'afterAddSubmenu']);
-	}
+    }
     
-	public function runPage() {
+    public function runPage() {
 
-		echo 'Respuesta desde el método runPage';
-	}
+        echo 'Respuesta desde el método runPage';
+    }
 
-	public function addStyles() {
+    public function addStyles() {
 
-		echo 'Respuesta desde el método addStyles';
-	}
+        echo 'Respuesta desde el método addStyles';
+    }
 
-	public function addScripts() {
+    public function addScripts() {
 
-		echo 'Respuesta desde el método addScripts';
-	}
+        echo 'Respuesta desde el método addScripts';
+    }
 
-	public function beforeAddMenu() {
+    public function beforeAddMenu() {
 
-		echo 'Respuesta desde la acción wp_menu/pre_add_menu_page';
-	}
+        echo 'Respuesta desde la acción wp_menu/pre_add_menu_page';
+    }
 
-	public function afterAddMenu($hook_suffix) {
+    public function afterAddMenu($hook_suffix) {
 
-		echo 'Respuesta desde la acción wp_menu/after_add_menu_page';
+        echo 'Respuesta desde la acción wp_menu/after_add_menu_page';
 
-		echo 'Hook suffix: ' . $hook_suffix;
-	}
+        echo 'Hook suffix: ' . $hook_suffix;
+    }
 
-	public function beforeAddSubmenu() {
+    public function beforeAddSubmenu() {
 
-		echo 'Respuesta desde la acción wp_menu/pre_add_submenu_page';
-	}
+        echo 'Respuesta desde la acción wp_menu/pre_add_submenu_page';
+    }
 
-	public function afterAddSubmenu($hook_suffix) {
+    public function afterAddSubmenu($hook_suffix) {
 
-		echo 'Respuesta desde la acción wp_menu/after_add_submenu_page';
+        echo 'Respuesta desde la acción wp_menu/after_add_submenu_page';
 
-		echo 'Hook suffix: ' . $hook_suffix;
-	}
+        echo 'Hook suffix: ' . $hook_suffix;
+    }
 }
 
 $SampleClass = new SampleClass;
@@ -294,44 +294,44 @@ $SampleClass = new SampleClass;
  * Agregar menú
  */ 
 $params = [
-	'slug'       => 'plugin-options',
+    'slug'       => 'plugin-options',
     'name'       => __('Plugin Name',  'plugin-slug'),
     'title'      => __('Plugin Title', 'plugin-slug'),
-	'capability' => 'manage_options',
-	'icon_url'   => '//searchinside-menu-admin.png',
-	'position'   => 25,
+    'capability' => 'manage_options',
+    'icon_url'   => '//searchinside-menu-admin.png',
+    'position'   => 25,
 ];
 
 WP_Menu::add(
-	'menu', 
-	$params,
-	[$SampleClass, 'runPage'], 
-	[$SampleClass, 'addStyles'],
-	[$SampleClass, 'addScripts']
+    'menu', 
+    $params,
+    [$SampleClass, 'runPage'], 
+    [$SampleClass, 'addStyles'],
+    [$SampleClass, 'addScripts']
 );
 
 /**
  * Agregar submenú
  */ 
 $params = [
-	'slug'       => 'sub-plugin-options',
-	'parent'     => 'plugin-options',
+    'slug'       => 'sub-plugin-options',
+    'parent'     => 'plugin-options',
     'name'       => __('Plugin Name',  'plugin-slug'),
     'title'      => __('Plugin Title', 'plugin-slug'),
-	'capability' => 'manage_options',
+    'capability' => 'manage_options',
 ];
 
 WP_Menu::add(
-	'submenu', 
-	$params, 
-	[$SampleClass, 'runPage'], 
-	[$SampleClass, 'addStyles'],
-	[$SampleClass, 'addScripts']
+    'submenu', 
+    $params, 
+    [$SampleClass, 'runPage'], 
+    [$SampleClass, 'addStyles'],
+    [$SampleClass, 'addScripts']
 );
 
 # Cuando se lanza do_action('admin_menu');
 
-	// Respuesta desde la acción wp_menu/pre_add_menu_page
+    // Respuesta desde la acción wp_menu/pre_add_menu_page
     // Respuesta desde la acción wp_menu/pre_add_submenu_page
     
     // Respuesta desde la acción wp_menu/after_add_menu_page
@@ -341,29 +341,29 @@ WP_Menu::add(
     // Hook suffix: plugin-name_page_sub-plugin-options
     
 # Cuando se lanza do_action('toplevel_page_plugin-options');
-	
+    
     // Se ejecuta solo si se accede a la página asociada a este menú.
 
-		// Respuesta desde el método runPage
+        // Respuesta desde el método runPage
     
 # Cuando se lanza do_action('plugin-name_page_sub-plugin-options');
-	
+    
     // Se ejecuta solo si se accede a la página asociada a este submenú.
 
-		// Respuesta desde el método runPage
+        // Respuesta desde el método runPage
 
 # Cuando se lanza do_action('load-toplevel_page_plugin-options');
-	
+    
     // Se ejecuta solo si se accede a la página asociada a este menú.
 
-		// Respuesta desde el método addStyles
+        // Respuesta desde el método addStyles
         // Respuesta desde el método addScripts
     
 # Cuando se lanza do_action('load-plugin-name_page_sub-plugin-options');
-	
+    
     // Se ejecuta solo si se accede a la página asociada a este submenú.
 
-		// Respuesta desde el método addStyles
+        // Respuesta desde el método addStyles
         // Respuesta desde el método addScripts
 ```
 

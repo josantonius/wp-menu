@@ -99,12 +99,12 @@ Add WordPress menu/submenu.
 
 ```php
 $params = [
-	'slug'       => 'searchinside-options',
-	'name'       => __('Search Inside', 'search-iniside'),
-	'title'      => __('Search Inside', 'search-iniside'),
-	'capability' => 'manage_options',
-	'icon_url'   => '//searchinside-menu-admin.png',
-	'position'   => 25,
+    'slug'       => 'searchinside-options',
+    'name'       => __('Search Inside', 'search-iniside'),
+    'title'      => __('Search Inside', 'search-iniside'),
+    'capability' => 'manage_options',
+    'icon_url'   => '//searchinside-menu-admin.png',
+    'position'   => 25,
 ];
 ```
 
@@ -114,8 +114,8 @@ Add menu without associated method.
 
 ```php
 WP_Menu::add(
-	'menu', 
-	$params
+    'menu', 
+    $params
 );
 ```
 
@@ -123,9 +123,9 @@ Add menu with associated method for output.
 
 ```php
 WP_Menu::add(
-	'menu', 
-	$params,
-	[$this, 'runPage']
+    'menu', 
+    $params,
+    [$this, 'runPage']
 );
 ```
 
@@ -133,10 +133,10 @@ Add menu with associated methods for output and styles.
 
 ```php
 WP_Menu::add(
-	'menu', 
-	$params,
-	[$instance1, 'runPage'], 
-	[$instance3, 'load_styles']
+    'menu', 
+    $params,
+    [$instance1, 'runPage'], 
+    [$instance3, 'load_styles']
 );
 ```
 
@@ -144,11 +144,11 @@ Add menu with associated methods for output, styles and scripts.
 
 ```php
 WP_Menu::add(
-	'menu', 
-	$params,
-	[$instance1, 'runPage'], 
-	[$instance3, 'load_styles'],
-	[$instance3, 'load_scripts']
+    'menu', 
+    $params,
+    [$instance1, 'runPage'], 
+    [$instance3, 'load_styles'],
+    [$instance3, 'load_scripts']
 );
 ```
 
@@ -156,11 +156,11 @@ Add menu with associated methods for output and scripts.
 
 ```php
 WP_Menu::add(
-	'menu', 
-	$params,
-	[$instance1, 'runPage'], 
-	false,
-	[$instance3, 'load_scripts']
+    'menu', 
+    $params,
+    [$instance1, 'runPage'], 
+    false,
+    [$instance3, 'load_scripts']
 );
 ```
 
@@ -168,11 +168,11 @@ WP_Menu::add(
 
 ```php
 $params = [
-	'slug'       => 'searchinside-options',
-	'parent'     => 'searchinside-options',
-	'name'       => __('Options', 'search-iniside'),
-	'title'      => __('Options', 'search-iniside'),
-	'capability' => 'manage_options',
+    'slug'       => 'searchinside-options',
+    'parent'     => 'searchinside-options',
+    'name'       => __('Options', 'search-iniside'),
+    'title'      => __('Options', 'search-iniside'),
+    'capability' => 'manage_options',
 ];
 ```
 
@@ -182,8 +182,8 @@ Add submenu without associated method:
 
 ```php
 WP_Menu::add(
-	'submenu', 
-	$params
+    'submenu', 
+    $params
 );
 ```
 
@@ -191,9 +191,9 @@ Add submenu with associated method for output.
 
 ```php
 WP_Menu::add(
-	'submenu',
-	$params, 
-	[$this, 'runPage']
+    'submenu',
+    $params, 
+    [$this, 'runPage']
 );
 ```
 
@@ -201,10 +201,10 @@ Add submenu with associated methods for output and styles.
 
 ```php
 WP_Menu::add(
-	'submenu', 
-	$params, 
-	[$instance1, 'runPage'], 
-	[$instance3, 'load_styles']
+    'submenu', 
+    $params, 
+    [$instance1, 'runPage'], 
+    [$instance3, 'load_styles']
 );
 ```
 
@@ -212,11 +212,11 @@ Add submenu with associated methods for output, styles and scripts.
 
 ```php
 WP_Menu::add(
-	'submenu', 
-	$params, 
-	[$instance1, 'runPage'], 
-	[$instance3, 'load_styles'],
-	[$instance3, 'load_scripts']
+    'submenu', 
+    $params, 
+    [$instance1, 'runPage'], 
+    [$instance3, 'load_styles'],
+    [$instance3, 'load_scripts']
 );
 ```
 
@@ -224,11 +224,11 @@ Add submenu with associated method for output and scripts.
 
 ```php
 WP_Menu::add(
-	'submenu', 
-	$params, 
-	[$instance1, 'runPage'], 
-	false,
-	[$instance3, 'load_scripts']
+    'submenu', 
+    $params, 
+    [$instance1, 'runPage'], 
+    false,
+    [$instance3, 'load_scripts']
 );
 ```
 
@@ -237,7 +237,7 @@ WP_Menu::add(
 ```php
 class SampleClass {
 
-	public function __construct() {
+    public function __construct() {
 
         add_action('wp_menu/pre_add_menu_page', [$this, 'beforeAddMenu']);
 
@@ -246,46 +246,46 @@ class SampleClass {
         add_action('wp_menu/pre_add_submenu_page', [$this, 'beforeAddSubmenu']);
 
         add_action('wp_menu/after_add_submenu_page', [$this, 'afterAddSubmenu']);
-	}
+    }
     
-	public function runPage() {
+    public function runPage() {
 
-		echo 'Response from runPage method';
-	}
+        echo 'Response from runPage method';
+    }
 
-	public function addStyles() {
+    public function addStyles() {
 
-		echo 'Response from addStyles method';
-	}
+        echo 'Response from addStyles method';
+    }
 
-	public function addScripts() {
+    public function addScripts() {
 
-		echo 'Response from addScripts method';
-	}
+        echo 'Response from addScripts method';
+    }
 
-	public function beforeAddMenu() {
+    public function beforeAddMenu() {
 
-		echo 'Response from wp_menu/pre_add_menu_page action';
-	}
+        echo 'Response from wp_menu/pre_add_menu_page action';
+    }
 
-	public function afterAddMenu($hook_suffix) {
+    public function afterAddMenu($hook_suffix) {
 
-		echo 'Response from wp_menu/after_add_menu_page action';
+        echo 'Response from wp_menu/after_add_menu_page action';
 
-		echo 'Hook suffix: ' . $hook_suffix;
-	}
+        echo 'Hook suffix: ' . $hook_suffix;
+    }
 
-	public function beforeAddSubmenu() {
+    public function beforeAddSubmenu() {
 
-		echo 'Response from wp_menu/pre_add_submenu_page action';
-	}
+        echo 'Response from wp_menu/pre_add_submenu_page action';
+    }
 
-	public function afterAddSubmenu($hook_suffix) {
+    public function afterAddSubmenu($hook_suffix) {
 
-		echo 'Response from wp_menu/after_add_submenu_page action';
+        echo 'Response from wp_menu/after_add_submenu_page action';
 
-		echo 'Hook suffix: ' . $hook_suffix;
-	}
+        echo 'Hook suffix: ' . $hook_suffix;
+    }
 }
 
 $SampleClass = new SampleClass;
@@ -294,44 +294,44 @@ $SampleClass = new SampleClass;
  * Add menu
  */ 
 $params = [
-	'slug'       => 'plugin-options',
+    'slug'       => 'plugin-options',
     'name'       => __('Plugin Name',  'plugin-slug'),
     'title'      => __('Plugin Title', 'plugin-slug'),
-	'capability' => 'manage_options',
-	'icon_url'   => '//searchinside-menu-admin.png',
-	'position'   => 25,
+    'capability' => 'manage_options',
+    'icon_url'   => '//searchinside-menu-admin.png',
+    'position'   => 25,
 ];
 
 WP_Menu::add(
-	'menu', 
-	$params,
-	[$SampleClass, 'runPage'], 
-	[$SampleClass, 'addStyles'],
-	[$SampleClass, 'addScripts']
+    'menu', 
+    $params,
+    [$SampleClass, 'runPage'], 
+    [$SampleClass, 'addStyles'],
+    [$SampleClass, 'addScripts']
 );
 
 /**
  * Add submenu
  */ 
 $params = [
-	'slug'       => 'sub-plugin-options',
-	'parent'     => 'plugin-options',
+    'slug'       => 'sub-plugin-options',
+    'parent'     => 'plugin-options',
     'name'       => __('Plugin Name',  'plugin-slug'),
     'title'      => __('Plugin Title', 'plugin-slug'),
-	'capability' => 'manage_options',
+    'capability' => 'manage_options',
 ];
 
 WP_Menu::add(
-	'submenu', 
-	$params, 
-	[$SampleClass, 'runPage'], 
-	[$SampleClass, 'addStyles'],
-	[$SampleClass, 'addScripts']
+    'submenu', 
+    $params, 
+    [$SampleClass, 'runPage'], 
+    [$SampleClass, 'addStyles'],
+    [$SampleClass, 'addScripts']
 );
 
 # When do_action('admin_menu');
 
-	// Response from wp_menu/pre_add_menu_page action
+    // Response from wp_menu/pre_add_menu_page action
     // Response from wp_menu/pre_add_submenu_page action
     
     // Response from wp_menu/after_add_menu_page action
@@ -341,29 +341,29 @@ WP_Menu::add(
     // Hook suffix: plugin-name_page_sub-plugin-options
     
 # When do_action('toplevel_page_plugin-options');
-	
+    
     // Executed only if access the page associated with this menu.
 
-		// Response from runPage method
+        // Response from runPage method
     
 # When do_action('plugin-name_page_sub-plugin-options');
-	
+    
     // Executed only if access the page associated with this submenu.
 
-		// Response from runPage method
+        // Response from runPage method
 
 # When do_action('load-toplevel_page_plugin-options');
-	
+    
     // Executed only if access the page associated with this menu.
 
-		// Response from addStyles method
+        // Response from addStyles method
         // Response from addScripts method
     
 # When do_action('load-plugin-name_page_sub-plugin-options');
-	
+    
     // Executed only if access the page associated with this submenu.
 
-		// Response from addStyles method
+        // Response from addStyles method
         // Response from addScripts method
 ```
 
