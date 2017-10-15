@@ -1,6 +1,6 @@
 {
     "name":        "josantonius/wp_menu",
-    "version":     "1.0.3",
+    "version":     "1.0.4",
     "type":        "library",
     "description": "Add menu or submenu page in WordPress.",
     "keywords": [
@@ -20,6 +20,8 @@
         }
     ],
     "support": {
+        "issues": "https://github.com/josantonius/wp_menu/issues",
+        "forum":  "http://stackoverflow.com/tags/josantonius/wp_menu",
         "source": "https://github.com/josantonius/wp_menu"
     },
     "config": {
@@ -31,12 +33,15 @@
     },
     "autoload": {
         "psr-4": {
-            "Josantonius\\WP_Menu\\": "src/"
+            "Josantonius\\WP_Menu\\": "src/WP_Menu/"
         }
     },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }
