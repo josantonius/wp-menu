@@ -391,7 +391,7 @@ Para ejecutar las [pruebas](tests/WP_Menu/Test) simplemente:
 ### ☑ Tareas pendientes
 
 - [x] Completar tests
-- [ ] Mejorar la documentación
+- [x] Mejorar la documentación
 
 ## Contribuir
 
