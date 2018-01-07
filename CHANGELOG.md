@@ -14,10 +14,6 @@
 
 * Implemented `Codecov` to coverage reports.
 
-* Deprecated `Josantonius\WP_Register\WP_Register::deleteAttachedImages()` method.
-
-* Added `Josantonius\WP_Register\WP_Register::delete_all_attachment()` method.
-
 ## 1.0.4 - 2017-10-14
 
 * Unit tests supported by `PHPUnit` were added.
