@@ -1,6 +1,6 @@
 # PHP WordPress Menu
 
-[![Latest Stable Version](https://poser.pugx.org/josantonius/wp_menu/v/stable)](https://packagist.org/packages/josantonius/wp_menu) [![Total Downloads](https://poser.pugx.org/josantonius/wp_menu/downloads)](https://packagist.org/packages/josantonius/wp_menu) [![Latest Unstable Version](https://poser.pugx.org/josantonius/wp_menu/v/unstable)](https://packagist.org/packages/josantonius/wp_menu) [![License](https://poser.pugx.org/josantonius/wp_menu/license)](https://packagist.org/packages/josantonius/wp_menu) [![Travis](https://travis-ci.org/Josantonius/WP_Menu.svg)](https://travis-ci.org/Josantonius/WP_Menu)
+[![Latest Stable Version](https://poser.pugx.org/josantonius/WP_Menu/v/stable)](https://packagist.org/packages/josantonius/WP_Menu) [![Latest Unstable Version](https://poser.pugx.org/josantonius/WP_Menu/v/unstable)](https://packagist.org/packages/josantonius/WP_Menu) [![License](https://poser.pugx.org/josantonius/WP_Menu/license)](LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/26d441f10c114cfdaf6c15ce74e8f316)](https://www.codacy.com/app/Josantonius/WP_Menu?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Josantonius/WP_Menu&amp;utm_campaign=Badge_Grade) [![Total Downloads](https://poser.pugx.org/josantonius/WP_Menu/downloads)](https://packagist.org/packages/josantonius/WP_Menu) [![Travis](https://travis-ci.org/Josantonius/WP_Menu.svg)](https://travis-ci.org/Josantonius/WP_Menu) [![WP](https://img.shields.io/badge/WordPress-Standar-1abc9c.svg)](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/) [![CodeCov](https://codecov.io/gh/Josantonius/WP_Menu/branch/master/graph/badge.svg)](https://codecov.io/gh/Josantonius/WP_Menu)
 
 [English version](README.md)
 
@@ -8,10 +8,10 @@ Agregar menú o submenús en WordPress.
 
 ---
 
-- [Instalación](#instalación)
 - [Requisitos](#requisitos)
-- [Cómo empezar y ejemplos](#cómo-empezar-y-ejemplos)
+- [Instalación](#instalación)
 - [Métodos disponibles](#métodos-disponibles)
+- [Cómo empezar](#cómo-empezar)
 - [Uso](#uso)
 - [Action Hooks](#action-hooks)
 - [Tests](#tests)
@@ -23,46 +23,41 @@ Agregar menú o submenús en WordPress.
 
 ---
 
+## Requisitos
+
+Esta biblioteca es soportada por versiones de **PHP 5.6** o superiores y es compatible con versiones de **HHVM 3.0** o superiores.
+
 ## Instalación 
 
-La mejor forma de instalar esta extensión es a través de [composer](http://getcomposer.org/download/).
+La mejor forma de instalar esta extensión es a través de [Composer](http://getcomposer.org/download/).
 
-Para instalar PHP WordPress Menu library, simplemente escribe:
+Para instalar **PHP WP_Menu library**, simplemente escribe:
 
     $ composer require Josantonius/WP_Menu
 
-El comando anterior sólo instalará los archivos necesarios, si prefieres descargar todo el código fuente (incluyendo tests, directorio vendor, excepciones no utilizadas, documentos...) puedes utilizar:
+El comando anterior sólo instalará los archivos necesarios, si prefieres **descargar todo el código fuente** puedes utilizar:
 
     $ composer require Josantonius/WP_Menu --prefer-source
 
-También puedes clonar el repositorio completo con Git:
+También puedes **clonar el repositorio** completo con Git:
 
     $ git clone https://github.com/Josantonius/WP_Menu.git
-    
-## Requisitos
 
-Esta biblioteca es soportada por versiones de PHP 5.6 o superiores y es compatible con versiones de HHVM 3.0 o superiores.
+O **instalarlo manualmente**:
 
-Para utilizar esta biblioteca en HHVM (HipHop Virtual Machine) tendrás que activar los tipos escalares. Añade la siguiente ĺínea "hhvm.php7.scalar_types = true" en tu "/etc/hhvm/php.ini".
+[Download WP_Menu.php](https://raw.githubusercontent.com/Josantonius/WP_Menu/master/src/class-wp-menu.php):
 
-## Cómo empezar y ejemplos
-
-Para utilizar esta biblioteca, simplemente:
-
-```php
-<?php
-require __DIR__ . '/vendor/autoload.php';
-
-use Josantonius\WP_Menu\WP_Menu;
-```
+    $ wget https://raw.githubusercontent.com/Josantonius/WP_Menu/master/src/class-wp-menu.php
 
 ## Métodos disponibles
 
 Métodos disponibles en esta biblioteca:
 
-### add($type, $data, $function, $styles, $scripts)
+### - Agregar menu/submenu:
 
-Agregar menu/submenu.
+```php
+WP_Menu::add($type, $data, $function, $styles, $scripts);
+```
 
 | Atributo | Descripción | Tipo de dato | Requerido | Por defecto
 | --- | --- | --- | --- | --- |
@@ -91,11 +86,29 @@ Agregar menu/submenu.
 | --- | --- | --- | --- | --- |
 | $scripts | Función a la que se llamará para cargar scripts | callable | No | false |
 
-**@return** → Boolean
+**@return** (boolean)
+
+## Cómo empezar
+
+Para utilizar esta clase con **Composer**:
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Josantonius\WP_Menu;
+```
+
+Si la instalaste **manualmente**, utiliza:
+
+```php
+require_once __DIR__ . '/class-wp-menu.php';
+
+use Josantonius\WP_Menu\WP_Menu;
+```
 
 ## Uso
 
-### Ajustar parámetros del menú
+### - Ajustar parámetros del menú:
 
 ```php
 $params = [
@@ -108,9 +121,9 @@ $params = [
 ];
 ```
 
-### Agregar menú
+### - Agregar menú:
 
-Añadir menú sin método asociado.
+**Añadir menú sin método asociado.**
 
 ```php
 WP_Menu::add(
@@ -119,52 +132,52 @@ WP_Menu::add(
 );
 ```
 
-Agregar menú con método asociado para la salida.
+**Agregar menú con método asociado para la salida.**
 
 ```php
 WP_Menu::add(
     'menu', 
     $params,
-    [$this, 'runPage']
+    [$this, 'run_page']
 );
 ```
 
-Agregar menú con métodos de salida y estilos asociados.
+**Agregar menú con métodos de salida y estilos asociados.**
 
 ```php
 WP_Menu::add(
     'menu', 
     $params,
-    [$instance1, 'runPage'], 
+    [$instance1, 'run_page'], 
     [$instance3, 'load_styles']
 );
 ```
 
-Agregar menú con métodos de salida, estilos y scripts asociados.
+**Agregar menú con métodos de salida, estilos y scripts asociados.**
 
 ```php
 WP_Menu::add(
     'menu', 
     $params,
-    [$instance1, 'runPage'], 
+    [$instance1, 'run_page'], 
     [$instance3, 'load_styles'],
     [$instance3, 'load_scripts']
 );
 ```
 
-Agregar menú con métodos de salida y scripts asociados.
+**Agregar menú con métodos de salida y scripts asociados.**
 
 ```php
 WP_Menu::add(
     'menu', 
     $params,
-    [$instance1, 'runPage'], 
+    [$instance1, 'run_page'], 
     false,
     [$instance3, 'load_scripts']
 );
 ```
 
-### Ajustar parámetros de submenú
+### - Ajustar parámetros de submenú:
 
 ```php
 $params = [
@@ -176,9 +189,9 @@ $params = [
 ];
 ```
 
-### Agregar submenú
+### - Agregar submenú:
 
-Agregar submenú sin método asociado:
+**Agregar submenú sin método asociado:**
 
 ```php
 WP_Menu::add(
@@ -187,146 +200,141 @@ WP_Menu::add(
 );
 ```
 
-Agregar submenú con método asociado para salida:
+**Agregar submenú con método asociado para salida:**
 
 ```php
 WP_Menu::add(
     'submenu',
     $params, 
-    [$this, 'runPage']
+    [$this, 'run_page']
 );
 ```
 
-Agregar submenú con método asociado para salida y estilos:
+**Agregar submenú con método asociado para salida y estilos:**
 
 ```php
 WP_Menu::add(
     'submenu', 
     $params, 
-    [$instance1, 'runPage'], 
+    [$instance1, 'run_page'], 
     [$instance3, 'load_styles']
 );
 ```
 
-Agregar submenú con método asociado para salida, estilos y scripts:
+**Agregar submenú con método asociado para salida, estilos y scripts:**
 
 ```php
 WP_Menu::add(
     'submenu', 
     $params, 
-    [$instance1, 'runPage'], 
+    [$instance1, 'run_page'], 
     [$instance3, 'load_styles'],
     [$instance3, 'load_scripts']
 );
 ```
 
-Agregar submenú con método asociado para salida y scripts:
+**Agregar submenú con método asociado para salida y scripts:**
 
 ```php
 WP_Menu::add(
     'submenu', 
     $params, 
-    [$instance1, 'runPage'], 
+    [$instance1, 'run_page'], 
     false,
     [$instance3, 'load_scripts']
 );
 ```
 
-### Ejemplo avanzado
+### - Ejemplo avanzado:
 
 ```php
-class SampleClass {
+class Sample_Class {
 
     public function __construct() {
 
-        add_action('wp_menu/pre_add_menu_page', [$this, 'beforeAddMenu']);
-
-        add_action('wp_menu/after_add_menu_page', [$this, 'afterAddMenu']);
- 
-        add_action('wp_menu/pre_add_submenu_page', [$this, 'beforeAddSubmenu']);
-
-        add_action('wp_menu/after_add_submenu_page', [$this, 'afterAddSubmenu']);
-    }
-    
-    public function runPage() {
-
-        echo 'Respuesta desde el método runPage';
+        add_action( 'wp_menu/pre_add_menu_page', [ $this, 'before_add_menu' ] );
+        add_action( 'wp_menu/after_add_menu_page', [ $this, 'after_add_menu' ] );
+        add_action( 'wp_menu/pre_add_submenu_page', [ $this, 'before_add_submenu' ] );
+        add_action( 'wp_menu/after_add_submenu_page', [ $this, 'after_add_submenu' ] );
     }
 
-    public function addStyles() {
+    public function run_page() {
 
-        echo 'Respuesta desde el método addStyles';
+        echo 'Response from run_page method';
     }
 
-    public function addScripts() {
+    public function add_styles() {
 
-        echo 'Respuesta desde el método addScripts';
+        echo 'Response from add_styles method';
     }
 
-    public function beforeAddMenu() {
+    public function add_scripts() {
 
-        echo 'Respuesta desde la acción wp_menu/pre_add_menu_page';
+        echo 'Response from add_scripts method';
     }
 
-    public function afterAddMenu($hook_suffix) {
+    public function before_add_menu() {
 
-        echo 'Respuesta desde la acción wp_menu/after_add_menu_page';
+        echo 'Response from wp_menu/pre_add_menu_page action';
+    }
 
+    public function after_add_menu( $hook_suffix ) {
+
+        echo 'Response from wp_menu/after_add_menu_page action';
         echo 'Hook suffix: ' . $hook_suffix;
     }
 
-    public function beforeAddSubmenu() {
+    public function before_add_submenu() {
 
-        echo 'Respuesta desde la acción wp_menu/pre_add_submenu_page';
+        echo 'Response from wp_menu/pre_add_submenu_page action';
     }
 
-    public function afterAddSubmenu($hook_suffix) {
+    public function after_add_submenu( $hook_suffix ) {
 
-        echo 'Respuesta desde la acción wp_menu/after_add_submenu_page';
-
+        echo 'Response from wp_menu/after_add_submenu_page action';
         echo 'Hook suffix: ' . $hook_suffix;
     }
 }
 
-$SampleClass = new SampleClass;
+$sample_class = new Sample_Class();
 
 /**
  * Agregar menú
- */ 
+ */
 $params = [
     'slug'       => 'plugin-options',
-    'name'       => __('Plugin Name',  'plugin-slug'),
-    'title'      => __('Plugin Title', 'plugin-slug'),
+    'name'       => __( 'Plugin Name', 'plugin-slug' ),
+    'title'      => __( 'Plugin Title', 'plugin-slug' ),
     'capability' => 'manage_options',
     'icon_url'   => '//searchinside-menu-admin.png',
     'position'   => 25,
 ];
 
 WP_Menu::add(
-    'menu', 
+    'menu',
     $params,
-    [$SampleClass, 'runPage'], 
-    [$SampleClass, 'addStyles'],
-    [$SampleClass, 'addScripts']
+    [ $sample_class, 'run_page' ],
+    [ $sample_class, 'add_styles' ],
+    [ $sample_class, 'add_scripts' ]
 );
 
 /**
  * Agregar submenú
- */ 
+ */
 $params = [
     'slug'       => 'sub-plugin-options',
     'parent'     => 'plugin-options',
-    'name'       => __('Plugin Name',  'plugin-slug'),
-    'title'      => __('Plugin Title', 'plugin-slug'),
+    'name'       => __( 'Plugin Name', 'plugin-slug' ),
+    'title'      => __( 'Plugin Title', 'plugin-slug' ),
     'capability' => 'manage_options',
 ];
 
 WP_Menu::add(
-    'submenu', 
-    $params, 
-    [$SampleClass, 'runPage'], 
-    [$SampleClass, 'addStyles'],
-    [$SampleClass, 'addScripts']
+    'submenu',
+    $params,
+    [ $sample_class, 'run_page' ],
+    [ $sample_class, 'add_styles' ],
+    [ $sample_class, 'add_scripts' ]
 );
 
 # Cuando se lanza do_action('admin_menu');
@@ -344,13 +352,13 @@ WP_Menu::add(
     
     // Se ejecuta solo si se accede a la página asociada a este menú.
 
-        // Respuesta desde el método runPage
+        // Respuesta desde el método run_page
     
 # Cuando se lanza do_action('plugin-name_page_sub-plugin-options');
     
     // Se ejecuta solo si se accede a la página asociada a este submenú.
 
-        // Respuesta desde el método runPage
+        // Respuesta desde el método run_page
 
 # Cuando se lanza do_action('load-toplevel_page_plugin-options');
     
@@ -369,43 +377,64 @@ WP_Menu::add(
 
 ## Action hooks
 
-| Acción | Descripción | Parameters
+| Acción | Descripción | Parámetros
 | --- | --- | --- |
 | wp_menu/pre_add_menu_page | Antes de agregar menú. |
 | wp_menu/after_add_menu_page | Después de agregar menú. | **$page** Hook_suffix de la página resultante o false.
 | wp_menu/pre_add_submenu_page | Antes de agregar submenú. |
 | wp_menu/after_add_submenu_page | Después de agregar submenú. | **$page** Hook_suffix de la página resultante o false.
 
-### Tests 
+## Tests 
 
-Para ejecutar las [pruebas](tests/WP_Menu/Test) simplemente:
+Para ejecutar las [pruebas](tests) necesitarás [Composer](http://getcomposer.org/download/) y seguir los siguientes pasos:
 
     $ git clone https://github.com/Josantonius/WP_Menu.git
     
     $ cd WP_Menu
 
-    $ bash bin/install-wp-tests.sh wordpress_test root '' localhost latest
+    $ composer install
 
-    $ phpunit
+Ejecutar pruebas unitarias con [PHPUnit](https://phpunit.de/):
 
-### ☑ Tareas pendientes
+    $ composer phpunit
 
-- [x] Completar tests
-- [x] Mejorar la documentación
+Ejecutar pruebas de estándares de código para [WordPress](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/) con [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer):
+
+    $ composer phpcs
+
+Ejecutar pruebas con [PHP Mess Detector](https://phpmd.org/) para detectar inconsistencias en el estilo de codificación:
+
+    $ composer phpmd
+
+Ejecutar todas las pruebas anteriores:
+
+    $ composer tests
+
+## ☑ Tareas pendientes
+
+- [ ] Añadir nueva funcionalidad.
+- [ ] Mejorar pruebas.
+- [ ] Mejorar documentación.
+- [ ] Refactorizar código para las reglas de estilo de código deshabilitadas. Ver [phpmd.xml](phpmd.xml) y [.php_cs.dist](.php_cs.dist).
 
 ## Contribuir
 
-1. Comprobar si hay incidencias abiertas o abrir una nueva para iniciar una discusión en torno a un fallo o función.
-1. Bifurca la rama del repositorio en GitHub para iniciar la operación de ajuste.
-1. Escribe una o más pruebas para la nueva característica o expón el error.
-1. Haz cambios en el código para implementar la característica o reparar el fallo.
-1. Envía pull request para fusionar los cambios y que sean publicados.
+Si deseas colaborar, puedes echar un vistazo a la lista de
+[issues](https://github.com/Josantonius/WP_Menu/issues) o [tareas pendientes](#-tareas-pendientes).
 
-Esto está pensado para proyectos grandes y de larga duración.
+**Pull requests**
+
+* [Fork and clone](https://help.github.com/articles/fork-a-repo).
+* Ejecuta el comando `composer install` para instalar dependencias.
+  Esto también instalará las [dependencias de desarrollo](https://getcomposer.org/doc/03-cli.md#install).
+* Ejecuta el comando `composer fix` para estandarizar el código.
+* Ejecuta las [pruebas](#tests).
+* Crea una nueva rama (**branch**), **commit**, **push** y envíame un
+  [pull request](https://help.github.com/articles/using-pull-requests).
 
 ## Repositorio
 
-Los archivos de este repositorio se crearon y subieron automáticamente con [Reposgit Creator](https://github.com/Josantonius/BASH-Reposgit).
+La estructura de archivos de este repositorio se creó con [PHP-Skeleton](https://github.com/Josantonius/PHP-Skeleton).
 
 ## Licencia
 
@@ -413,7 +442,7 @@ Este proyecto está licenciado bajo **licencia MIT**. Consulta el archivo [LICEN
 
 ## Copyright
 
-2017 Josantonius, [josantonius.com](https://josantonius.com/)
+2017 -2018 Josantonius, [josantonius.com](https://josantonius.com/)
 
 Si te ha resultado útil, házmelo saber :wink:
 

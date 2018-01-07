@@ -11,16 +11,17 @@
          syntaxCheck="false"
          bootstrap="tests/bootstrap.php"
 >
-
     <testsuites>
         <testsuite name="WP_Menu Test Suite">
-            <directory>tests/WP_Menu/</directory>
+            <file>tests/class-front-end-test.php</file>
+            <file>tests/class-menu-test.php</file>
+            <file>tests/class-submenu-test.php</file>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>src/WP_Menu</directory>
+            <directory>src</directory>
         </whitelist>
     </filter>
 </phpunit>

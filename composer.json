@@ -1,27 +1,18 @@
 {
-    "name":        "josantonius/wp_menu",
-    "version":     "1.0.4",
-    "type":        "library",
+    "name": "josantonius/wp_menu",
+    "type": "library",
     "description": "Add menu or submenu page in WordPress.",
-    "keywords": [
-        "Wordpress",
-        "Menu",
-        "Submenu",
-        "HHVM",
-        "PHP"
-    ],
+    "keywords": ["Wordpress", "Menu", "Submenu", "HHVM", "PHP"],
     "license": "MIT",
-    "authors": [
-        {
-            "name":     "Josantonius",
-            "email":    "hello@josantonius.com",
-            "homepage": "https://josantonius.com",
-            "role":     "Developer"
-        }
-    ],
+    "authors": [{
+        "name": "Josantonius",
+        "email": "hello@josantonius.com",
+        "homepage": "https://josantonius.com",
+        "role": "Developer"
+    }],
     "support": {
         "issues": "https://github.com/josantonius/wp_menu/issues",
-        "forum":  "http://stackoverflow.com/tags/josantonius/wp_menu",
+        "forum": "http://stackoverflow.com/tags/josantonius/wp_menu",
         "source": "https://github.com/josantonius/wp_menu"
     },
     "config": {
@@ -31,10 +22,18 @@
     "require": {
         "php": "^5.6 || ^7.0"
     },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^0.14",
+        "phpunit/phpunit": "^5.7 || ^6.0",
+        "squizlabs/php_codesniffer": "^3.2.2",
+        "friendsofphp/php-cs-fixer": "^2.3 || ^2.8",
+        "phpmd/phpmd": "^2.6"
+    },
     "autoload": {
-        "psr-4": {
-            "Josantonius\\WP_Menu\\": "src/WP_Menu/"
-        }
+        "classmap": ["src/"]
+    },
+    "autoload-dev": {
+        "classmap": ["tests/"]
     },
     "extra": {
         "branch-alias": {
@@ -42,6 +41,10 @@
         }
     },
     "scripts": {
-        "test": "phpunit"
+        "phpunit": "vendor/bin/phpunit --colors=always;",
+        "phpcs": "vendor/bin/phpcs --standard=phpcs.xml $(find . -name '*.php');",
+        "phpmd": "vendor/bin/phpmd src,tests text ./phpmd.xml",
+        "fix": ["vendor/bin/php-cs-fixer fix -v", "vendor/bin/phpcbf src tests"],
+        "tests": ["clear", "@phpmd", "@phpcs", "@phpunit"]
     }
 }
