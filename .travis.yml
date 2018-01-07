@@ -47,7 +47,6 @@ matrix:
       env: WP_VERSION=latest
   allow_failures:
     - php: nightly
-    - php: hhvm
 
 before_script:
   - export PATH="./vendor/bin:$PATH"
@@ -69,4 +68,3 @@ script:
 
 after_success:
  - bash <(curl -s https://codecov.io/bash)
- 
