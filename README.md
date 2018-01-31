@@ -417,6 +417,7 @@ Run all previous tests:
 - [ ] Add new feature.
 - [ ] Improve tests.
 - [ ] Improve documentation.
+- [ ] Create tests for when user don't have capabilities to access page.
 - [ ] Refactor code for disabled code style rules. See [phpmd.xml](phpmd.xml) and [.php_cs.dist](.php_cs.dist).
 
 ## Contribute

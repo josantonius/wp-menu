@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.6 - 2018-01-31
+
+* The private method `check_permissions()` was eliminated, it is unnecessary and affects the site's globally. WordPress's `add_menu_page()` and `add_submenu_page()` methods already display the page according to the user's capabilities.
+
 ## 1.0.5 - 2018-01-07
 
 * Implemented `PHP Mess Detector` to detect inconsistencies in code styles.

@@ -340,30 +340,6 @@ final class Menu_Test extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Access the page when the user does not have access permission.
-	 *
-	 * @expectedException WPDieException
-	 */
-	public function test_add_menu_without_access_to_page() {
-
-		$menu = $this->wp_menu;
-
-		$editor_id = $this->factory->user->create(
-			[ 'role' => 'editor' ]
-		);
-
-		wp_set_current_user( $editor_id );
-
-		set_current_screen( 'admin.php' );
-
-		$this->assertTrue(
-			$menu::add( 'menu', $this->params )
-		);
-
-		do_action( 'admin_menu' );
-	}
-
-	/**
 	 * Tear down.
 	 */
 	public function tearDown() {

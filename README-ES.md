@@ -415,6 +415,7 @@ Ejecutar todas las pruebas anteriores:
 - [ ] Añadir nueva funcionalidad.
 - [ ] Mejorar pruebas.
 - [ ] Mejorar documentación.
+- [ ] Crear pruebas para cuando el usuario no tiene la capacidad de acceder a una página.
 - [ ] Refactorizar código para las reglas de estilo de código deshabilitadas. Ver [phpmd.xml](phpmd.xml) y [.php_cs.dist](.php_cs.dist).
 
 ## Contribuir

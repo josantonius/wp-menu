@@ -359,30 +359,6 @@ final class SubMenuTest extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Access the page when the user does not have access permission.
-	 *
-	 * @expectedException WPDieException
-	 */
-	public function testAddSubmenuWithoutAccessToPage() {
-
-		$menu = $this->wp_menu;
-
-		$editor_id = $this->factory->user->create(
-			[ 'role' => 'editor' ]
-		);
-
-		wp_set_current_user( $editor_id );
-
-		set_current_screen( 'admin.php' );
-
-		$this->assertTrue(
-			$menu::add( 'submenu', $this->params )
-		);
-
-		do_action( 'admin_menu' );
-	}
-
-	/**
 	 * Tear down.
 	 */
 	public function tearDown() {

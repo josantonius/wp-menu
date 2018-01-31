@@ -149,8 +149,6 @@ class WP_Menu {
 
 		$data = self::$data[ $type ][ $slug ];
 
-		self::check_permissions( $data['capability'] );
-
 		do_action( 'wp_menu/pre_add_' . $type . '_page' );
 
 		if ( 'menu' === $type ) {
@@ -182,24 +180,6 @@ class WP_Menu {
 		if ( ! $pagenow || 'admin.php' === $pagenow ) {
 			self::set_action( $page, $data['styles'] );
 			self::set_action( $page, $data['scripts'] );
-		}
-	}
-
-	/**
-	 * Validate permissions.
-	 *
-	 * @since 1.0.2
-	 *
-	 * @param string $capability → capability.
-	 *
-	 * @uses current_user_can() → specific capability.
-	 * @uses wp_die()           → kill WordPress execution and show error.
-	 */
-	private static function check_permissions( $capability ) {
-
-		if ( ! current_user_can( $capability ) ) {
-			$message = __( 'You don\'t have permissions to access this page.' );
-			wp_die( $message );
 		}
 	}
 
