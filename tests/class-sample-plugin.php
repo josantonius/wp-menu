@@ -2,7 +2,7 @@
 /**
  * Add menu or submenus in WordPress.
  *
- * @author    Josantonius - hello@josantonius.com
+ * @author    Josantonius <hello@josantonius.com>
  * @package   Josantonius\WP_Menu
  * @copyright 2017 - 2018 (c) Josantonius - WP_Menu
  * @license   https://opensource.org/licenses/MIT - The MIT License (MIT)
@@ -10,7 +10,7 @@
  * @since     1.0.4
  */
 
-namespace Josantonius\WP_Menu\Test;
+namespace Josantonius\WP_Menu;
 
 /**
  * Sample plugin class.
@@ -46,7 +46,7 @@ class Sample_Plugin {
 	 */
 	public function before_add_menu() {
 
-		echo 'Response from wp_menu/pre_add_menu_page action';
+		echo 'Response from wp_menu_pre_add_menu_page action';
 	}
 
 	/**
@@ -56,7 +56,7 @@ class Sample_Plugin {
 	 */
 	public function after_add_menu( $hook_suffix ) {
 
-		echo 'Response from wp_menu/after_add_menu_page action';
+		echo 'Response from wp_menu_after_add_menu_page action';
 
 		echo 'Hook suffix: ' . $hook_suffix;
 	}
@@ -66,7 +66,7 @@ class Sample_Plugin {
 	 */
 	public function before_add_submenu() {
 
-		echo 'Response from wp_menu/pre_add_submenu_page action';
+		echo 'Response from wp_menu_pre_add_submenu_page action';
 	}
 
 	/**
@@ -76,7 +76,7 @@ class Sample_Plugin {
 	 */
 	public function after_add_submenu( $hook_suffix ) {
 
-		echo 'Response from wp_menu/after_add_submenu_page action';
+		echo 'Response from wp_menu_after_add_submenu_page action';
 
 		echo 'Hook suffix: ' . $hook_suffix;
 	}

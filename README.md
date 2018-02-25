@@ -252,10 +252,10 @@ class Sample_Class {
 
     public function __construct() {
 
-        add_action( 'wp_menu/pre_add_menu_page', [ $this, 'before_add_menu' ] );
-        add_action( 'wp_menu/after_add_menu_page', [ $this, 'after_add_menu' ] );
-        add_action( 'wp_menu/pre_add_submenu_page', [ $this, 'before_add_submenu' ] );
-        add_action( 'wp_menu/after_add_submenu_page', [ $this, 'after_add_submenu' ] );
+        add_action( 'wp_menu_pre_add_menu_page', [ $this, 'before_add_menu' ] );
+        add_action( 'wp_menu_after_add_menu_page', [ $this, 'after_add_menu' ] );
+        add_action( 'wp_menu_pre_add_submenu_page', [ $this, 'before_add_submenu' ] );
+        add_action( 'wp_menu_after_add_submenu_page', [ $this, 'after_add_submenu' ] );
     }
 
     public function run_page() {
@@ -275,23 +275,23 @@ class Sample_Class {
 
     public function before_add_menu() {
 
-        echo 'Response from wp_menu/pre_add_menu_page action';
+        echo 'Response from wp_menu_pre_add_menu_page action';
     }
 
     public function after_add_menu( $hook_suffix ) {
 
-        echo 'Response from wp_menu/after_add_menu_page action';
+        echo 'Response from wp_menu_after_add_menu_page action';
         echo 'Hook suffix: ' . $hook_suffix;
     }
 
     public function before_add_submenu() {
 
-        echo 'Response from wp_menu/pre_add_submenu_page action';
+        echo 'Response from wp_menu_pre_add_submenu_page action';
     }
 
     public function after_add_submenu( $hook_suffix ) {
 
-        echo 'Response from wp_menu/after_add_submenu_page action';
+        echo 'Response from wp_menu_after_add_submenu_page action';
         echo 'Hook suffix: ' . $hook_suffix;
     }
 }
@@ -339,11 +339,11 @@ WP_Menu::add(
 
 # When do_action('admin_menu');
 
-    // Response from wp_menu/pre_add_menu_page action
-    // Response from wp_menu/pre_add_submenu_page action
+    // Response from wp_menu_pre_add_menu_page action
+    // Response from wp_menu_pre_add_submenu_page action
     
-    // Response from wp_menu/after_add_menu_page action
-    // Response from wp_menu/after_add_submenu_page action
+    // Response from wp_menu_after_add_menu_page action
+    // Response from wp_menu_after_add_submenu_page action
     
     // Hook suffix: load-toplevel_page_plugin-options
     // Hook suffix: plugin-name_page_sub-plugin-options
@@ -379,10 +379,10 @@ WP_Menu::add(
 
 | Action | Description | Parameters
 | --- | --- | --- |
-| wp_menu/pre_add_menu_page | Before adding menu. | 
-| wp_menu/after_add_menu_page | After adding menu. | **$page** Resulting page's hook_suffix, or false.
-| wp_menu/pre_add_submenu_page | Before adding submenu. | 
-| wp_menu/after_add_submenu_page | After adding submenu. | **$page** Resulting page's hook_suffix, or false.
+| wp_menu_pre_add_menu_page | Before adding menu. | 
+| wp_menu_after_add_menu_page | After adding menu. | **$page** Resulting page's hook_suffix, or false.
+| wp_menu_pre_add_submenu_page | Before adding submenu. | 
+| wp_menu_after_add_submenu_page | After adding submenu. | **$page** Resulting page's hook_suffix, or false.
 
 ## Tests 
 

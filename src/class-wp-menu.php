@@ -2,7 +2,7 @@
 /**
  * Add menu or submenus in WordPress.
  *
- * @author    Josantonius - hello@josantonius.com
+ * @author    Josantonius <hello@josantonius.com>
  * @package   Josantonius\WP_Menu
  * @copyright 2017 - 2018 (c) Josantonius - WP_Menu
  * @license   https://opensource.org/licenses/MIT - The MIT License (MIT)
@@ -149,7 +149,7 @@ class WP_Menu {
 
 		$data = self::$data[ $type ][ $slug ];
 
-		do_action( 'wp_menu/pre_add_' . $type . '_page' );
+		do_action( 'wp_menu_pre_add_' . $type . '_page' );
 
 		if ( 'menu' === $type ) {
 
@@ -175,7 +175,7 @@ class WP_Menu {
 			);
 		}
 
-		do_action( 'wp_menu/after_add_' . $type . '_page', 'load-' . $page );
+		do_action( 'wp_menu_after_add_' . $type . '_page', 'load-' . $page );
 
 		if ( ! $pagenow || 'admin.php' === $pagenow ) {
 			self::set_action( $page, $data['styles'] );

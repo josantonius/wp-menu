@@ -2,7 +2,7 @@
 /**
  * Add menu or submenus in WordPress.
  *
- * @author    Josantonius - hello@josantonius.com
+ * @author    Josantonius <hello@josantonius.com>
  * @package   Josantonius\WP_Image
  * @copyright 2017 - 2018 (c) Josantonius - WP_Menu
  * @license   https://opensource.org/licenses/MIT - The MIT License (MIT)
@@ -10,14 +10,12 @@
  * @since     1.0.4
  */
 
-namespace Josantonius\WP_Menu\Test;
-
-use Josantonius\WP_Menu\WP_Menu;
+namespace Josantonius\WP_Menu;
 
 /**
  * Tests class for WP_Menu library.
  */
-final class SubMenuTest extends \WP_UnitTestCase {
+final class Submenu_Test extends \WP_UnitTestCase {
 
 	/**
 	 * WP_Menu instance.
@@ -70,12 +68,12 @@ final class SubMenuTest extends \WP_UnitTestCase {
 		];
 
 		add_action(
-			'wp_menu/pre_add_submenu_page',
+			'wp_menu_pre_add_submenu_page',
 			[ $this->sample_plugin, 'before_add_submenu' ]
 		);
 
 		add_action(
-			'wp_menu/after_add_submenu_page',
+			'wp_menu_after_add_submenu_page',
 			[ $this->sample_plugin, 'after_add_submenu' ]
 		);
 	}
@@ -177,8 +175,8 @@ final class SubMenuTest extends \WP_UnitTestCase {
 
 		do_action( 'admin_menu' );
 
-		$before = 'Response from wp_menu/pre_add_submenu_page action';
-		$after  = 'Response from wp_menu/after_add_submenu_page action';
+		$before = 'Response from wp_menu_pre_add_submenu_page action';
+		$after  = 'Response from wp_menu_after_add_submenu_page action';
 		$suffix = 'Hook suffix: load-plugin-name_page_sub-plugin-options';
 
 		$this->expectOutputString( $before . $after . $suffix );
@@ -199,8 +197,8 @@ final class SubMenuTest extends \WP_UnitTestCase {
 
 		do_action( 'admin_menu' );
 
-		$before = 'Response from wp_menu/pre_add_submenu_page action';
-		$after  = 'Response from wp_menu/after_add_submenu_page action';
+		$before = 'Response from wp_menu_pre_add_submenu_page action';
+		$after  = 'Response from wp_menu_after_add_submenu_page action';
 		$suffix = 'Hook suffix: load-plugin-name_page_sub-plugin-options';
 
 		$this->expectOutputString( $before . $after . $suffix );
@@ -227,8 +225,8 @@ final class SubMenuTest extends \WP_UnitTestCase {
 
 		do_action( 'admin_menu' );
 
-		$before = 'Response from wp_menu/pre_add_submenu_page action';
-		$after  = 'Response from wp_menu/after_add_submenu_page action';
+		$before = 'Response from wp_menu_pre_add_submenu_page action';
+		$after  = 'Response from wp_menu_after_add_submenu_page action';
 		$suffix = 'Hook suffix: load-plugin-name_page_sub-plugin-options';
 
 		do_action( 'plugin-name_page_sub-plugin-options' );
@@ -260,8 +258,8 @@ final class SubMenuTest extends \WP_UnitTestCase {
 
 		do_action( 'admin_menu' );
 
-		$before = 'Response from wp_menu/pre_add_submenu_page action';
-		$after  = 'Response from wp_menu/after_add_submenu_page action';
+		$before = 'Response from wp_menu_pre_add_submenu_page action';
+		$after  = 'Response from wp_menu_after_add_submenu_page action';
 		$suffix = 'Hook suffix: load-plugin-name_page_sub-plugin-options';
 
 		do_action( 'plugin-name_page_sub-plugin-options' );
@@ -300,8 +298,8 @@ final class SubMenuTest extends \WP_UnitTestCase {
 
 		do_action( 'admin_menu' );
 
-		$before = 'Response from wp_menu/pre_add_submenu_page action';
-		$after  = 'Response from wp_menu/after_add_submenu_page action';
+		$before = 'Response from wp_menu_pre_add_submenu_page action';
+		$after  = 'Response from wp_menu_after_add_submenu_page action';
 		$suffix = 'Hook suffix: load-plugin-name_page_sub-plugin-options';
 
 		do_action( 'plugin-name_page_sub-plugin-options' );
@@ -341,8 +339,8 @@ final class SubMenuTest extends \WP_UnitTestCase {
 
 		do_action( 'admin_menu' );
 
-		$before = 'Response from wp_menu/pre_add_submenu_page action';
-		$after  = 'Response from wp_menu/after_add_submenu_page action';
+		$before = 'Response from wp_menu_pre_add_submenu_page action';
+		$after  = 'Response from wp_menu_after_add_submenu_page action';
 		$suffix = 'Hook suffix: load-plugin-name_page_sub-plugin-options';
 
 		do_action( 'plugin-name_page_sub-plugin-options' );

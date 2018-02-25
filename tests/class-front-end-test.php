@@ -2,7 +2,7 @@
 /**
  * Add menu or submenus in WordPress.
  *
- * @author    Josantonius - hello@josantonius.com
+ * @author    Josantonius <hello@josantonius.com>
  * @package   Josantonius\WP_Menu
  * @copyright 2017 - 2018 (c) Josantonius - WP_Menu
  * @license   https://opensource.org/licenses/MIT - The MIT License (MIT)
@@ -10,9 +10,7 @@
  * @since     1.0.4
  */
 
-namespace Josantonius\WP_Menu\Test;
-
-use Josantonius\WP_Menu\WP_Menu;
+namespace Josantonius\WP_Menu;
 
 /**
  * Tests class for WP_Menu library.

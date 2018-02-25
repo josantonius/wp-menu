@@ -252,10 +252,10 @@ class Sample_Class {
 
     public function __construct() {
 
-        add_action( 'wp_menu/pre_add_menu_page', [ $this, 'before_add_menu' ] );
-        add_action( 'wp_menu/after_add_menu_page', [ $this, 'after_add_menu' ] );
-        add_action( 'wp_menu/pre_add_submenu_page', [ $this, 'before_add_submenu' ] );
-        add_action( 'wp_menu/after_add_submenu_page', [ $this, 'after_add_submenu' ] );
+        add_action( 'wp_menu_pre_add_menu_page', [ $this, 'before_add_menu' ] );
+        add_action( 'wp_menu_after_add_menu_page', [ $this, 'after_add_menu' ] );
+        add_action( 'wp_menu_pre_add_submenu_page', [ $this, 'before_add_submenu' ] );
+        add_action( 'wp_menu_after_add_submenu_page', [ $this, 'after_add_submenu' ] );
     }
 
     public function run_page() {
@@ -275,23 +275,23 @@ class Sample_Class {
 
     public function before_add_menu() {
 
-        echo 'Response from wp_menu/pre_add_menu_page action';
+        echo 'Response from wp_menu_pre_add_menu_page action';
     }
 
     public function after_add_menu( $hook_suffix ) {
 
-        echo 'Response from wp_menu/after_add_menu_page action';
+        echo 'Response from wp_menu_after_add_menu_page action';
         echo 'Hook suffix: ' . $hook_suffix;
     }
 
     public function before_add_submenu() {
 
-        echo 'Response from wp_menu/pre_add_submenu_page action';
+        echo 'Response from wp_menu_pre_add_submenu_page action';
     }
 
     public function after_add_submenu( $hook_suffix ) {
 
-        echo 'Response from wp_menu/after_add_submenu_page action';
+        echo 'Response from wp_menu_after_add_submenu_page action';
         echo 'Hook suffix: ' . $hook_suffix;
     }
 }
@@ -339,11 +339,11 @@ WP_Menu::add(
 
 # Cuando se lanza do_action('admin_menu');
 
-    // Respuesta desde la acción wp_menu/pre_add_menu_page
-    // Respuesta desde la acción wp_menu/pre_add_submenu_page
+    // Respuesta desde la acción wp_menu_pre_add_menu_page
+    // Respuesta desde la acción wp_menu_pre_add_submenu_page
     
-    // Respuesta desde la acción wp_menu/after_add_menu_page
-    // Respuesta desde la acción wp_menu/after_add_submenu_page
+    // Respuesta desde la acción wp_menu_after_add_menu_page
+    // Respuesta desde la acción wp_menu_after_add_submenu_page
     
     // Hook suffix: load-toplevel_page_plugin-options
     // Hook suffix: plugin-name_page_sub-plugin-options
@@ -379,10 +379,10 @@ WP_Menu::add(
 
 | Acción | Descripción | Parámetros
 | --- | --- | --- |
-| wp_menu/pre_add_menu_page | Antes de agregar menú. |
-| wp_menu/after_add_menu_page | Después de agregar menú. | **$page** Hook_suffix de la página resultante o false.
-| wp_menu/pre_add_submenu_page | Antes de agregar submenú. |
-| wp_menu/after_add_submenu_page | Después de agregar submenú. | **$page** Hook_suffix de la página resultante o false.
+| wp_menu_pre_add_menu_page | Antes de agregar menú. |
+| wp_menu_after_add_menu_page | Después de agregar menú. | **$page** Hook_suffix de la página resultante o false.
+| wp_menu_pre_add_submenu_page | Antes de agregar submenú. |
+| wp_menu_after_add_submenu_page | Después de agregar submenú. | **$page** Hook_suffix de la página resultante o false.
 
 ## Tests 
 
