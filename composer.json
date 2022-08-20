@@ -1,19 +1,27 @@
 {
-    "name": "josantonius/wp_menu",
+    "name": "josantonius/wp-menu",
     "type": "library",
     "description": "Add menu or submenu page in WordPress.",
-    "keywords": ["Wordpress", "Menu", "Submenu", "HHVM", "PHP"],
+    "keywords": [
+        "Wordpress",
+        "Menu",
+        "Submenu",
+        "HHVM",
+        "PHP"
+    ],
     "license": "MIT",
-    "authors": [{
-        "name": "Josantonius",
-        "email": "hello@josantonius.com",
-        "homepage": "https://josantonius.com",
-        "role": "Developer"
-    }],
+    "authors": [
+        {
+            "name": "Josantonius",
+            "email": "hello@josantonius.dev",
+            "homepage": "https://josantonius.dev",
+            "role": "Developer"
+        }
+    ],
     "support": {
-        "issues": "https://github.com/josantonius/wp_menu/issues",
-        "forum": "http://stackoverflow.com/tags/josantonius/wp_menu",
-        "source": "https://github.com/josantonius/wp_menu"
+        "issues": "https://github.com/josantonius/wp-menu/issues",
+        "forum": "http://stackoverflow.com/tags/josantonius/wp-menu",
+        "source": "https://github.com/josantonius/wp-menu"
     },
     "config": {
         "preferred-install": "dist"
@@ -31,10 +39,14 @@
         "phpmd/phpmd": "^2.6"
     },
     "autoload": {
-        "classmap": ["src/"]
+        "classmap": [
+            "src/"
+        ]
     },
     "autoload-dev": {
-        "classmap": ["tests/"]
+        "classmap": [
+            "tests/"
+        ]
     },
     "extra": {
         "branch-alias": {
@@ -45,7 +57,15 @@
         "phpunit": "vendor/bin/phpunit --colors=always;",
         "phpcs": "vendor/bin/phpcs --standard=phpcs.xml $(find . -name '*.php');",
         "phpmd": "vendor/bin/phpmd src,tests text ./phpmd.xml",
-        "fix": ["vendor/bin/php-cs-fixer fix -v", "vendor/bin/phpcbf src tests"],
-        "tests": ["clear", "@phpmd", "@phpcs", "@phpunit"]
+        "fix": [
+            "vendor/bin/php-cs-fixer fix -v",
+            "vendor/bin/phpcbf src tests"
+        ],
+        "tests": [
+            "clear",
+            "@phpmd",
+            "@phpcs",
+            "@phpunit"
+        ]
     }
 }

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2022-08-20
+
+* The repository was archived.
+
 ## 1.0.7 - 2018-02-25
 
 * Slugs were modified for the action hooks.
@@ -81,10 +85,10 @@
 
 * Added the following actions hooks:
 
-	wp_menu/pre_add_menu_page      | Before adding menu
-	wp_menu/after_add_menu_page    | After adding menu.
-	wp_menu/pre_add_submenu_page   | Before adding submenu
-	wp_menu/after_add_submenu_page | After adding submenu.
+ wp_menu/pre_add_menu_page      | Before adding menu
+ wp_menu/after_add_menu_page    | After adding menu.
+ wp_menu/pre_add_submenu_page   | Before adding submenu
+ wp_menu/after_add_submenu_page | After adding submenu.
 
 ## 1.0.2 - 2017-05-24
 

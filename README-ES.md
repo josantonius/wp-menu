@@ -1,6 +1,7 @@
 # PHP WordPress Menu
 
-[![Latest Stable Version](https://poser.pugx.org/josantonius/WP_Menu/v/stable)](https://packagist.org/packages/josantonius/WP_Menu) [![Latest Unstable Version](https://poser.pugx.org/josantonius/WP_Menu/v/unstable)](https://packagist.org/packages/josantonius/WP_Menu) [![License](https://poser.pugx.org/josantonius/WP_Menu/license)](LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/26d441f10c114cfdaf6c15ce74e8f316)](https://www.codacy.com/app/Josantonius/WP_Menu?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Josantonius/WP_Menu&amp;utm_campaign=Badge_Grade) [![Total Downloads](https://poser.pugx.org/josantonius/WP_Menu/downloads)](https://packagist.org/packages/josantonius/WP_Menu) [![Travis](https://travis-ci.org/Josantonius/WP_Menu.svg)](https://travis-ci.org/Josantonius/WP_Menu) [![WP](https://img.shields.io/badge/WordPress-Standar-1abc9c.svg)](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/) [![CodeCov](https://codecov.io/gh/Josantonius/WP_Menu/branch/master/graph/badge.svg)](https://codecov.io/gh/Josantonius/WP_Menu)
+[![Latest Stable Version](https://poser.pugx.org/josantonius/wp-menu/v/stable)](https://packagist.org/packages/josantonius/wp-menu)
+[![License](https://poser.pugx.org/josantonius/wp-menu/license)](LICENSE)
 
 [English version](README.md)
 
@@ -15,11 +16,8 @@ Agregar menú o submenús en WordPress.
 - [Uso](#uso)
 - [Action Hooks](#action-hooks)
 - [Tests](#tests)
-- [Tareas pendientes](#-tareas-pendientes)
-- [Contribuir](#contribuir)
-- [Repositorio](#repositorio)
+- [Patrocinar](#patrocinar)
 - [Licencia](#licencia)
-- [Copyright](#copyright)
 
 ---
 
@@ -27,33 +25,33 @@ Agregar menú o submenús en WordPress.
 
 Esta biblioteca es soportada por versiones de **PHP 5.6** o superiores y es compatible con versiones de **HHVM 3.0** o superiores.
 
-## Instalación 
+## Instalación
 
 La mejor forma de instalar esta extensión es a través de [Composer](http://getcomposer.org/download/).
 
 Para instalar **PHP WP_Menu library**, simplemente escribe:
 
-    $ composer require Josantonius/WP_Menu
+    composer require josantonius/wp-menu
 
 El comando anterior sólo instalará los archivos necesarios, si prefieres **descargar todo el código fuente** puedes utilizar:
 
-    $ composer require Josantonius/WP_Menu --prefer-source
+    composer require josantonius/wp-menu --prefer-source
 
 También puedes **clonar el repositorio** completo con Git:
 
-    $ git clone https://github.com/Josantonius/WP_Menu.git
+    git clone https://github.com/josantonius/wp-menu.git
 
 O **instalarlo manualmente**:
 
-[Download WP_Menu.php](https://raw.githubusercontent.com/Josantonius/WP_Menu/master/src/class-wp-menu.php):
+[Download WP_Menu.php](https://raw.githubusercontent.com/josantonius/wp-menu/master/src/class-wp-menu.php):
 
-    $ wget https://raw.githubusercontent.com/Josantonius/WP_Menu/master/src/class-wp-menu.php
+    wget https://raw.githubusercontent.com/josantonius/wp-menu/master/src/class-wp-menu.php
 
 ## Métodos disponibles
 
 Métodos disponibles en esta biblioteca:
 
-### - Agregar menu/submenu:
+### - Agregar menu/submenu
 
 ```php
 WP_Menu::add($type, $data, $function, $styles, $scripts);
@@ -108,7 +106,7 @@ use Josantonius\WP_Menu\WP_Menu;
 
 ## Uso
 
-### - Ajustar parámetros del menú:
+### - Ajustar parámetros del menú
 
 ```php
 $params = [
@@ -121,7 +119,7 @@ $params = [
 ];
 ```
 
-### - Agregar menú:
+### - Agregar menú
 
 **Añadir menú sin método asociado.**
 
@@ -177,7 +175,7 @@ WP_Menu::add(
 );
 ```
 
-### - Ajustar parámetros de submenú:
+### - Ajustar parámetros de submenú
 
 ```php
 $params = [
@@ -189,7 +187,7 @@ $params = [
 ];
 ```
 
-### - Agregar submenú:
+### - Agregar submenú
 
 **Agregar submenú sin método asociado:**
 
@@ -245,7 +243,7 @@ WP_Menu::add(
 );
 ```
 
-### - Ejemplo avanzado:
+### - Ejemplo avanzado
 
 ```php
 class Sample_Class {
@@ -384,67 +382,40 @@ WP_Menu::add(
 | wp_menu_pre_add_submenu_page | Antes de agregar submenú. |
 | wp_menu_after_add_submenu_page | Después de agregar submenú. | **$page** Hook_suffix de la página resultante o false.
 
-## Tests 
+## Tests
 
 Para ejecutar las [pruebas](tests) necesitarás [Composer](http://getcomposer.org/download/) y seguir los siguientes pasos:
 
-    $ git clone https://github.com/Josantonius/WP_Menu.git
+    git clone https://github.com/josantonius/wp-menu.git
     
-    $ cd WP_Menu
+    cd WP_Menu
 
-    $ composer install
+    composer install
 
 Ejecutar pruebas unitarias con [PHPUnit](https://phpunit.de/):
 
-    $ composer phpunit
+    composer phpunit
 
 Ejecutar pruebas de estándares de código para [WordPress](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/) con [PHPCS](https://github.com/squizlabs/PHP_CodeSniffer):
 
-    $ composer phpcs
+    composer phpcs
 
 Ejecutar pruebas con [PHP Mess Detector](https://phpmd.org/) para detectar inconsistencias en el estilo de codificación:
 
-    $ composer phpmd
+    composer phpmd
 
 Ejecutar todas las pruebas anteriores:
 
-    $ composer tests
+    composer tests
 
-## ☑ Tareas pendientes
+## Patrocinar
 
-- [ ] Añadir nueva funcionalidad.
-- [ ] Mejorar pruebas.
-- [ ] Mejorar documentación.
-- [ ] Crear pruebas para cuando el usuario no tiene la capacidad de acceder a una página.
-- [ ] Refactorizar código para las reglas de estilo de código deshabilitadas. Ver [phpmd.xml](phpmd.xml) y [.php_cs.dist](.php_cs.dist).
-
-## Contribuir
-
-Si deseas colaborar, puedes echar un vistazo a la lista de
-[issues](https://github.com/Josantonius/WP_Menu/issues) o [tareas pendientes](#-tareas-pendientes).
-
-**Pull requests**
-
-* [Fork and clone](https://help.github.com/articles/fork-a-repo).
-* Ejecuta el comando `composer install` para instalar dependencias.
-  Esto también instalará las [dependencias de desarrollo](https://getcomposer.org/doc/03-cli.md#install).
-* Ejecuta el comando `composer fix` para estandarizar el código.
-* Ejecuta las [pruebas](#tests).
-* Crea una nueva rama (**branch**), **commit**, **push** y envíame un
-  [pull request](https://help.github.com/articles/using-pull-requests).
-
-## Repositorio
-
-La estructura de archivos de este repositorio se creó con [PHP-Skeleton](https://github.com/Josantonius/PHP-Skeleton).
+Si este proyecto te ayuda a reducir el tiempo de desarrollo,
+[puedes patrocinarme](https://github.com/josantonius/lang/es-ES/README.md#patrocinar)
+para apoyar mi trabajo :blush:
 
 ## Licencia
 
-Este proyecto está licenciado bajo **licencia MIT**. Consulta el archivo [LICENSE](LICENSE) para más información.
+Este repositorio tiene una licencia [MIT License](LICENSE).
 
-## Copyright
-
-2017 -2018 Josantonius, [josantonius.com](https://josantonius.com/)
-
-Si te ha resultado útil, házmelo saber :wink:
-
-Puedes contactarme en [Twitter](https://twitter.com/Josantonius) o a través de mi [correo electrónico](mailto:hello@josantonius.com).
+Copyright © 2017-2022, [Josantonius](https://github.com/josantonius/lang/es-ES/README.md#contacto)
